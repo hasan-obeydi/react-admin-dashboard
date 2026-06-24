@@ -1,0 +1,67 @@
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 100;
+  src: url("../assets/fonts/IRANSansX-Thin.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 200;
+  src: url("../assets/fonts/IRANSansX-UltraLight.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 300;
+  src: url("../assets/fonts/IRANSansX-Light.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/IRANSansX-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 500;
+  src: url("../assets/fonts/IRANSansX-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 600;
+  src: url("../assets/fonts/IRANSansX-DemiBold.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: bold;
+  src: url("../assets/fonts/IRANSansX-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 800;
+  src: url("../assets/fonts/IRANSansX-ExtraBold.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 900;
+  src: url("../assets/fonts/IRANSansX-Black.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 950;
+  src: url("../assets/fonts/IRANSansX-ExtraBlack.woff") format("woff");
+}
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 1000;
+  src: url("../assets/fonts/IRANSansX-Heavy.woff") format("woff");
+}
+
