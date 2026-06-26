@@ -5,9 +5,9 @@ import menus from "../../../data/menus";
 
 const Sidebar = () => {
   return (
-    <aside className="flex flex-col w-60 sticky top-0 h-screen p-4 border-l-[0.5px] border-color z-10 bg-white">
+    <aside className="p-4 flex flex-col w-60 sticky top-0 h-screen z-10 bg-white  border-l border-color">
       <SidebarHeader />
-      <div className="p-4 flex flex-col justify-between h-full">
+      <div className="flex flex-col justify-between h-full">
         <SidebarMenus menus={menus} />
         <SidebarLogin />
       </div>

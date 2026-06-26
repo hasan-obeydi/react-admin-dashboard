@@ -1,12 +1,7 @@
 @theme {
   --font-IRANSansX: "IRANSansX", sans-serif;
+  --color-primary: #4880ff;
 }
 @utility border-color {
   @apply border-[#E0E0E0];
-}
-@utility primary-text-color {
-  @apply text-[#4880FF];
-}
-@utility primary-bg-color {
-  @apply bg-[#4880FF];
 }
