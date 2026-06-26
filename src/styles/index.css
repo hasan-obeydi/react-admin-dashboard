@@ -1,9 +1,6 @@
 @import "tailwindcss";
-
-@theme {
-    --font-family: "IRANSnsX", sans-serif;
-}
+@import "variable.css";
 
 body {
-    font-family: var(--font-family);
+  @apply font-IRANSansX;
 }

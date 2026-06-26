@@ -4,6 +4,7 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 import Home from "../pages/Home/Page";
 import Products from "../pages/Products/Page";
 import Users from "../pages/Users/Page";
+import LoginPage from "../pages/Auth/Login";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         element: <Users />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
 ]);
 
