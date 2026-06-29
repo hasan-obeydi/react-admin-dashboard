@@ -3,5 +3,11 @@
   --color-primary: #4880ff;
 }
 @utility border-color {
-  @apply border-[#E0E0E0];
+  border-color: #e0e0e0;
+}
+@utility bg-dark-primary {
+  background-color: #273142;
+}
+@utility bg-dark-body {
+  background-color: #1b2431;
 }

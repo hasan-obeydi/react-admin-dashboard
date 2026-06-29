@@ -4,11 +4,11 @@ import Topbar from "./Topbar/Topbar";
 
 const DashboardLayout = () => {
   return (
-    <main id="root" className="flex">
+    <main id="root" className="flex dark:text-white">
       <Sidebar />
       <section className="*:px-6 w-full">
         <Topbar />
-        <div>
+        <div id="content" className="dark:bg-dark-body">
           <Outlet />
         </div>
       </section>

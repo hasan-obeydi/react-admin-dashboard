@@ -6,7 +6,7 @@ import SearchInput from "./components/SearchInput";
 
 const Topbar = () => {
   return (
-    <div className="p-3.5 border-b border-color flex items-center justify-between">
+    <div className="p-3.5 border-b border-color dark:border-none flex items-center justify-between dark:bg-dark-primary">
       <div className="flex items-center gap-4">
         <SearchInput />
         <ChangeTheme />

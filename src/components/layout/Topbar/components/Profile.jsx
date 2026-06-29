@@ -1,6 +1,6 @@
 const Profile = () => {
   return (
-    <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-200 px-3 py-2 rounded-full transition duration-300">
+    <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 px-3 py-2 rounded-full transition duration-300">
       <div>
         <img
           src="profile.jpg"

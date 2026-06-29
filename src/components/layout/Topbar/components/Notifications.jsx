@@ -1,6 +1,6 @@
 const Notifications = () => {
   return (
-    <div className="relative cursor-pointer hover:bg-gray-200 p-2 rounded-full transition duration-300">
+    <div className="relative cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 p-2 rounded-full transition duration-300">
       <svg
         width="24"
         height="26"
@@ -22,7 +22,9 @@ const Notifications = () => {
           fill="#FF0000"
         />
       </svg>
-      <div className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">2</div>
+      <div className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
+        2
+      </div>
     </div>
   );
 };

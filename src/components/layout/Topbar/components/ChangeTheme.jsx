@@ -1,17 +1,25 @@
+import { useEffect } from "react";
+
 import { MdOutlineLightMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 
-import useToggle from "../../../../hooks/useToggle";
+import useLocalStorage from "../../../../hooks/useLocalStorage";
 
 const ChangeTheme = () => {
-  const [isDarkMode, toggle] = useToggle(false);
+  const [theme, setLocalStorage] = useLocalStorage("theme", "light");
+  const themeHandler = () => {
+    setLocalStorage(theme === "light" ? "dark" : "light");
+  };
+  useEffect(() => {
+    document.documentElement.setAttribute("class", theme);
+  }, [theme]);
 
   return (
     <div
-      onClick={toggle}
-      className="cursor-pointer hover:bg-gray-200 p-2 rounded-full transition duration-300"
+      onClick={() => themeHandler()}
+      className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-full transition duration-300"
     >
-      {isDarkMode ? (
+      {theme === "dark" ? (
         <MdOutlineLightMode className="text-2xl" />
       ) : (
         <MdOutlineDarkMode className="text-2xl" />
