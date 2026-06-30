@@ -16,7 +16,7 @@ const DashboardLayout = () => {
       />
       <section className="*:px-6 w-full">
         <Topbar toggleMenu={toggleMenu} />
-        <div id="content" className="bg-body dark:bg-dark-body">
+        <div id="content" className="bg-body dark:bg-dark-body p-4">
           <Outlet />
         </div>
       </section>
