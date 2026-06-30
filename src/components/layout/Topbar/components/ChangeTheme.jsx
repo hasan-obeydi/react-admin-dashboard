@@ -17,7 +17,7 @@ const ChangeTheme = () => {
   return (
     <div
       onClick={() => themeHandler()}
-      className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-full transition duration-300"
+      className="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-full transition duration-200"
     >
       {theme === "dark" ? (
         <MdOutlineLightMode className="text-2xl" />

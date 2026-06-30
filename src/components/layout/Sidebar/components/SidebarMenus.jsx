@@ -12,7 +12,7 @@ const SidebarMenus = ({ menus }) => {
           </span>
           <ul
             key={menu.id}
-            className="mt-3 *:w-full *:flex *:items-center *:gap-2 *:p-2 *:hover:bg-gray-100 dark:*:hover:bg-gray-700 *:rounded-md *:duration-100 space-y-1"
+            className="mt-3 *:w-full *:flex *:items-center *:gap-2 *:p-2 *:hover:bg-gray-100 dark:*:hover:bg-gray-700 *:rounded-md *:duration-150 space-y-1"
           >
             {menu.items.map((nav) => (
               <NavLink

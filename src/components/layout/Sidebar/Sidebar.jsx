@@ -1,12 +1,30 @@
+import { useEffect } from "react";
+
+import clsx from "clsx";
+
 import SidebarHeader from "./components/SidebarHeader";
 import SidebarMenus from "./components/SidebarMenus";
 import SidebarLogin from "./components/SidebarLogin";
 import menus from "../../../data/menus";
+import useResize from "../../../hooks/useResize";
 
-const Sidebar = () => {
+const Sidebar = ({ isMenuOpen, setIsMenuOpen, toggleMenu }) => {
+  const WindowSize = useResize();
+
+  useEffect(() => {
+    if (WindowSize.width >= 640) {
+      setIsMenuOpen(false);
+    }
+  }, [WindowSize, setIsMenuOpen]);
+
   return (
-    <aside className="p-4 flex flex-col w-60 sticky top-0 h-screen z-10 bg-white dark:bg-dark-primary  border-l border-color dark:border-none">
-      <SidebarHeader />
+    <aside
+      className={clsx(
+        isMenuOpen ? "flex fixed" : "hidden sm:flex sm:sticky",
+        "p-4 flex-col h-screen top-0 w-60  z-50 bg-white dark:bg-dark-primary border-l border-color dark:border-l-gray-700",
+      )}
+    >
+      <SidebarHeader isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
       <div className="flex flex-col justify-between h-full">
         <SidebarMenus menus={menus} />
         <SidebarLogin />

@@ -8,7 +8,7 @@ const Profile = () => {
           className="size-10 rounded-full object-cover"
         />
       </div>
-      <div className="text-sm font-medium">
+      <div className="text-sm font-medium hidden sm:block">
         <span>محمد حسن عبیدی پور</span>
         <span className="block text-gray-500 text-xs">مدیر</span>
       </div>
