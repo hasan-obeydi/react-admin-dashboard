@@ -2,6 +2,9 @@
   --font-IRANSansX: "IRANSansX", sans-serif;
   --color-primary: #4880ff;
 }
+@utility bg--primary {
+  background-color: #4880ff;
+}
 @utility border-color {
   border-color: #e0e0e0;
 }
@@ -9,7 +12,7 @@
   background-color: #273142;
 }
 @utility bg-body {
-  background-color: #F5F6FA;
+  background-color: #f5f6fa;
 }
 @utility bg-dark-body {
   background-color: #1b2431;
