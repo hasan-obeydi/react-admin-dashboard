@@ -10,15 +10,14 @@ const SummayCard = ({ title, value, Icon, color, link }) => {
   return (
     <Link
       to={link}
-      className="bg-white dark:bg-dark-primary rounded-lg p-6 flex items-center justify-between hover:shadow-sm transition duration-300 hover:scale-105"
+      className="bg-white dark:bg-dark-primary rounded-lg p-6 flex items-center justify-between hover:shadow-sm transition-transform duration-300 hover:scale-105"
     >
       <div>
         <p className="text-[#202224] dark:text-white text-sm">{title}</p>
         <p className="text-4xl font-bold mt-4">{value}</p>
       </div>
       <div className={`${bgColors[color]} p-4 rounded-xl `}>
-        {console.log(color)}
-        <Icon className="text-3xl text-white" />
+        <Icon className="text-2xl text-white" />
       </div>
     </Link>
   );

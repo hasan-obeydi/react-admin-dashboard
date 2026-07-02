@@ -8,7 +8,7 @@ import SidebarLogin from "./components/SidebarLogin";
 import menus from "../../../data/menus";
 import useResize from "../../../hooks/useResize";
 
-const Sidebar = ({ isMenuOpen, setIsMenuOpen, toggleMenu }) => {
+const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
   const WindowSize = useResize();
 
   useEffect(() => {
@@ -24,9 +24,9 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen, toggleMenu }) => {
         "p-4 flex-col h-screen top-0 w-60  z-50 bg-white dark:bg-dark-primary border-l border-color dark:border-l-gray-700",
       )}
     >
-      <SidebarHeader isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <SidebarHeader isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <div className="flex flex-col justify-between h-full">
-        <SidebarMenus menus={menus} />
+        <SidebarMenus setIsMenuOpen={setIsMenuOpen} menus={menus} />
         <SidebarLogin />
       </div>
     </aside>

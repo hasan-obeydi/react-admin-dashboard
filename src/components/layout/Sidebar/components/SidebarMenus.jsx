@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { Fragment } from "react";
 import { NavLink } from "react-router";
 
-const SidebarMenus = ({ menus }) => {
+const SidebarMenus = ({ setIsMenuOpen, menus }) => {
   return (
     <div className="space-y-3 mt-4">
       {menus.map((menu) => (
@@ -16,6 +16,7 @@ const SidebarMenus = ({ menus }) => {
           >
             {menu.items.map((nav) => (
               <NavLink
+                onClick={() => setIsMenuOpen(false)}
                 key={nav.id}
                 to={nav.href}
                 className={({ isActive }) =>

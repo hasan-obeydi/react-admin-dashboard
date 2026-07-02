@@ -41,4 +41,21 @@ const generateSummaries = ({
   ];
 };
 
-export default generateSummaries;
+const generateDataChart = () => {
+  return [
+    { id: 1, name: "فروردین", value: 1000 },
+    { id: 2, name: "اردیبهشت", value: 2000 },
+    { id: 3, name: "خرداد", value: 5000 },
+    { id: 4, name: "تیر", value: 2000 },
+    { id: 5, name: "مرداد", value: 3000 },
+    { id: 6, name: "شهریور", value: 6000 },
+    { id: 7, name: "مهر", value: 7000 },
+    { id: 8, name: "آبان", value: 6000 },
+    { id: 9, name: "آذر", value: 9000 },
+    { id: 10, name: "دی", value: 10000 },
+    { id: 11, name: "بهمن", value: 8000 },
+    { id: 12, name: "اسفند", value: 5000 },
+  ];
+};
+
+export { generateSummaries, generateDataChart };
