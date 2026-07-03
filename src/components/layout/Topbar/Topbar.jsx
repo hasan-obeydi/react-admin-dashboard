@@ -10,7 +10,7 @@ import SearchInput from "./components/SearchInput";
 const Topbar = ({ toggleMenu }) => {
   const [isMobileSearchOpen, setIsMoblieSearchOpen] = useState(false);
   return (
-    <div className="p-3.5 border-b border-color dark:border-none flex gap-2 items-center justify-between dark:bg-dark-primary">
+    <div className="p-3.5 border-b border-color dark:border-none flex fixed sm:static top-0 z-10 w-full gap-2 items-center justify-between bg-white dark:bg-dark-primary">
       <div className="flex items-center md:gap-3 sm:gap-1 gap-3">
         <MenuIcon toggleMenu={toggleMenu} />
         <SearchInput
