@@ -23,7 +23,7 @@ const Home = () => {
     <section>
       <SectionTitle title={"داشبورد"} />
       <Summaries productsLength={products.length} usersLength={users.length} />
-      <DataChart title={"نمودار داده"} />
+      <DataChart title={"نمودار فروش"} />
       <QuickOverview
         products={products}
         productsLoading={productsLoading}

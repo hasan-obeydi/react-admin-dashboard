@@ -15,13 +15,12 @@ const useFetch = (url) => {
         if (response.status === 200) {
           const result = await response.json();
           setData(result);
+          setLoading(false)
         } else {
           setError(`Error: ${response.status} ${response.statusText}`);
         }
       } catch (err) {
         setError(err);
-      } finally {
-        setLoading(false);
       }
     };
 

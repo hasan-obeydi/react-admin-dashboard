@@ -10,10 +10,10 @@ const SidebarHeader = ({ isMenuOpen, setIsMenuOpen }) => {
         to="/"
         className="text-color font-bold text-lg text-center"
       >
-        <p>
+        <h1>
           <span className="text-primary">داش</span>
           <span className="dark:text-white">بورد</span>
-        </p>
+        </h1>
       </Link>
       <div
         onClick={() => setIsMenuOpen(false)}

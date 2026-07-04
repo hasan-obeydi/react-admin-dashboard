@@ -3,7 +3,7 @@ import LastUserCard from "./LastUserCard";
 
 const LastUsers = ({ users, usersLoading }) => {
   return (
-    <div className="col-span-2 bg-white dark:bg-dark-primary p-6 rounded-lg">
+    <div className="col-span-2 bg-white dark:bg-dark-primary p-6 rounded-lg border border-color dark:border-gray-700">
       <LastSectionTitle title="آخرین کاربران" link="/users" />
       {usersLoading ? (
         <p className="text-black dark:text-white">در حال اتصال...</p>

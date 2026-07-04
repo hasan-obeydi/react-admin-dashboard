@@ -3,7 +3,7 @@ import LastSectionTitle from "./LastSectionTitle";
 
 const LastProducts = ({ products, productsLoading }) => {
   return (
-    <div className="col-span-3 bg-white dark:bg-dark-primary p-6 rounded-lg">
+    <div className="col-span-3 bg-white dark:bg-dark-primary p-6 rounded-lg border border-color dark:border-gray-700">
       <LastSectionTitle title="آخرین محصولات" link="/products" />
       {productsLoading ? (
         <p className="text-black dark:text-white">در حال اتصال...</p>
