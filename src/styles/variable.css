@@ -2,6 +2,9 @@
   --font-IRANSansX: "IRANSansX", sans-serif;
   --color-primary: #4880ff;
 }
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
 @utility bg--primary {
   background-color: #4880ff;
 }
@@ -16,6 +19,15 @@
 }
 @utility bg-dark-body {
   background-color: #1b2431;
+}
+@utility icon-hover {
+  @apply cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 rounded-full transition duration-200;
+}
+@utility bg-gradiant {
+  @apply bg-linear-to-r from-sky-500 to-indigo-500;
+}
+@utility input-style {
+  @apply border border-color dark:border-gray-700 rounded-lg p-2 outline-0 focus-within:ring-4 focus-within:ring-primary/30 duration-200;
 }
 .badge {
   @apply px-2 py-1 rounded-lg cursor-pointer text-xs font-semibold border hover:opacity-60;

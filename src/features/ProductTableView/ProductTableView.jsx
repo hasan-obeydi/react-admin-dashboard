@@ -65,9 +65,13 @@ const ProductTableView = ({
               <TableCell>{product.entity}</TableCell>
               <TableCell>
                 <div className="flex items-center">
-                  <RemoveItem />
-                  <ChangeVisibilityItem />
-                  <EditItemDetails />
+                  <RemoveItem itemTitle={product.title} itemType="محصول" />
+                  <ChangeVisibilityItem
+                    isPublished={product.isPublished}
+                    itemTitle={product.title}
+                    itemType="محصول"
+                  />
+                  <EditItemDetails {...product} />
                 </div>
               </TableCell>
             </TableRow>

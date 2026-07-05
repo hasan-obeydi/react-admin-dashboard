@@ -19,6 +19,7 @@ const Home = () => {
     // error: usersError,
     loading: usersLoading,
   } = useFetch("https://react-js-cms.iran.liara.run/api/users");
+  console.log(products, users);
   return (
     <section>
       <SectionTitle title={"داشبورد"} />
