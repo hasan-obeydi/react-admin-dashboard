@@ -9,7 +9,7 @@ const LastProducts = ({ products, productsLoading }) => {
         <p className="text-black dark:text-white">در حال اتصال...</p>
       ) : (
         <div className="space-y-4">
-          {products
+          {[...products]
             .reverse()
             .slice(0, 4)
             .map((product) => (

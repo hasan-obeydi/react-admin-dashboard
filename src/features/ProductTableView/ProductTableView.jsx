@@ -13,9 +13,22 @@ import EditItemDetails from "../../components/Common/EditItem/EditItemDetails";
 import ChangeVisibilityItem from "../../components/Common/EditItem/ChangeVisibilityItem";
 import RemoveItem from "../../components/Common/EditItem/RemoveItem";
 
-const ProductTableView = ({ products, loading }) => {
+const ProductTableView = ({
+  products,
+  paginatedProducts,
+  setPaginatedProducts,
+  loading,
+}) => {
   return (
-    <Table header={{ title: "لیست محصولات" }} loading={loading}>
+    <Table
+      header={{ title: "لیست محصولات" }}
+      loading={loading}
+      pagination={{
+        items: products,
+        setPaginatedItems: setPaginatedProducts,
+        itemsPerPage: 10,
+      }}
+    >
       <TableHead>
         {productsTableHeadRow.map((cell) => (
           <TableHeadCell key={cell}>{cell}</TableHeadCell>
@@ -25,7 +38,7 @@ const ProductTableView = ({ products, loading }) => {
         <p className="p-3">در حال اتصال...</p>
       ) : (
         <TableBody>
-          {products.map((product, index) => (
+          {paginatedProducts.map((product, index) => (
             <TableRow key={product._id}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{product.title}</TableCell>

@@ -20,9 +20,24 @@
 .badge {
   @apply px-2 py-1 rounded-lg cursor-pointer text-xs font-semibold border hover:opacity-60;
   &.succes-badge {
-    @apply text-green-500 bg-green-500/10
+    @apply text-green-500 bg-green-500/10;
   }
   &.danger-badge {
-    @apply bg-red-500/10 text-red-500
+    @apply bg-red-500/10 text-red-500;
   }
+}
+.pagination {
+  @apply mt-4 pt-4 dark:border-gray-700 flex items-center justify-center gap-1 border-t border-color;
+}
+.pagination-button {
+  @apply cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 py-2 rounded-lg px-3 text-sm font-semibold transition duration-200 border border-color dark:border-gray-700;
+}
+.pagination-number-button {
+  @apply cursor-pointer py-2 rounded-lg px-3 text-sm font-semibold transition duration-200 border border-primary;
+}
+.pages-ended {
+  @apply bg-gray-300 dark:bg-gray-700 cursor-not-allowed opacity-30 hover:opacity-10;
+}
+.active-tab {
+  @apply bg--primary text-white;
 }

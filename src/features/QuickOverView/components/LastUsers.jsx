@@ -9,7 +9,7 @@ const LastUsers = ({ users, usersLoading }) => {
         <p className="text-black dark:text-white">در حال اتصال...</p>
       ) : (
         <div className="space-y-4">
-          {users
+          {[...users]
             .reverse()
             .slice(0, 4)
             .map((user) => (

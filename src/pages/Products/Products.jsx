@@ -1,3 +1,4 @@
+import { useState } from "react";
 import SectionTitle from "../../components/Common/SectionTitle";
 import ProductTableView from "../../features/ProductTableView/ProductTableView";
 import useFetch from "../../hooks/useFetch";
@@ -5,6 +6,7 @@ import useTitle from "../../hooks/useTitle";
 
 const Products = () => {
   useTitle("صفحه محصولات");
+  const [paginatedProducts, setPaginatedProducts] = useState([]);
   const {
     data: products,
     setData: setProducts,
@@ -17,6 +19,8 @@ const Products = () => {
       <ProductTableView
         products={products}
         setProducts={setProducts}
+        paginatedProducts={paginatedProducts}
+        setPaginatedProducts={setPaginatedProducts}
         loading={productsLoading}
       />
     </section>
