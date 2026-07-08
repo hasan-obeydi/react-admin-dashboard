@@ -18,6 +18,7 @@ const ProductTableView = ({
   paginatedProducts,
   setPaginatedProducts,
   loading,
+  deleteHandler,
 }) => {
   return (
     <Table
@@ -65,7 +66,12 @@ const ProductTableView = ({
               </TableCell>
               <TableCell>
                 <div className="flex items-center">
-                  <RemoveItem itemTitle={product.title} itemType="محصول" />
+                  <RemoveItem
+                    itemId={product._id}
+                    deleteItem={deleteHandler}
+                    itemTitle={product.title}
+                    itemType="محصول"
+                  />
                   <ChangeVisibilityItem
                     isPublished={product.isPublished}
                     itemTitle={product.title}

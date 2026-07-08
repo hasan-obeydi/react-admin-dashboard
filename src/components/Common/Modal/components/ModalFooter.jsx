@@ -1,4 +1,4 @@
-const ModalFooter = ({ toggle }) => {
+const ModalFooter = ({ itemId, onSubmit, toggle }) => {
   return (
     <div className="border-t border-color dark:border-gray-700 p-4 mt-2 justify-end flex gap-2">
       <button
@@ -8,7 +8,10 @@ const ModalFooter = ({ toggle }) => {
         انصراف
       </button>
       <button
-        onClick={() => toggle()}
+        onClick={() => {
+          toggle(); 
+          onSubmit(itemId);
+        }}
         className="py-2 px-4 bg-gradiant hover:opacity-60 duration-200 rounded-lg cursor-pointer text-white"
       >
         تایید

@@ -8,6 +8,7 @@ import HeaderButtons from "./components/HeaderButton";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import ProductGridView from "../../features/ProductGridView/ProductGridView";
 import useResize from "../../hooks/useResize";
+import { deleteProduct } from "../../api/products";
 
 const Products = () => {
   useTitle("صفحه محصولات");
@@ -21,10 +22,14 @@ const Products = () => {
   }, [windowSize, setLayoutType]);
   const {
     data: products,
-    // setData: setProducts,
+    setData: setProducts,
     // error: productsError,
     loading: productsLoading,
   } = useFetch("https://react-js-cms.iran.liara.run/api/products");
+  const deleteHandler = async (id) => {
+    await deleteProduct(id);
+    setProducts((prev) => prev.filter((product) => product._id !== id));
+  };
   return (
     <section>
       <SectionTitle
@@ -39,9 +44,11 @@ const Products = () => {
       {layoutType === "TABLE" ? (
         <ProductTableView
           products={products}
+          setProducts={setProducts}
           paginatedProducts={paginatedProducts}
           setPaginatedProducts={setPaginatedProducts}
           loading={productsLoading}
+          deleteHandler={deleteHandler}
         />
       ) : (
         <ProductGridView
