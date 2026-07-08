@@ -1,6 +1,6 @@
 const ModalFooter = ({ toggle }) => {
   return (
-    <div className="border-t border-color dark:border-gray-700 p-4 mt-4 justify-end flex gap-2">
+    <div className="border-t border-color dark:border-gray-700 p-4 mt-2 justify-end flex gap-2">
       <button
         onClick={() => toggle()}
         className="py-2 px-4 rounded-lg hover:bg-gray-200 dark:hover:bg-dark-primary duration-200 cursor-pointer border border-primary"

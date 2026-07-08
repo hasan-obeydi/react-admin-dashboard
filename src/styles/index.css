@@ -6,4 +6,5 @@
 body {
   @apply font-IRANSansX;
   overflow-x: hidden;
+  position: relative;
 }

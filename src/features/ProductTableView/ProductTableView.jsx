@@ -59,10 +59,10 @@ const ProductTableView = ({
                   {product.isPublished ? "عمومی" : "خصوصی"}
                 </span>
               </TableCell>
+              <TableCell>{product.entity}</TableCell>
               <TableCell>
                 {product.price.toLocaleString("fa-IR")} <span>تومان</span>
               </TableCell>
-              <TableCell>{product.entity}</TableCell>
               <TableCell>
                 <div className="flex items-center">
                   <RemoveItem itemTitle={product.title} itemType="محصول" />

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import SectionTitle from "../../components/Common/SectionTitle";
 import ProductTableView from "../../features/ProductTableView/ProductTableView";
@@ -7,11 +7,18 @@ import useTitle from "../../hooks/useTitle";
 import HeaderButtons from "./components/HeaderButton";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import ProductGridView from "../../features/ProductGridView/ProductGridView";
+import useResize from "../../hooks/useResize";
 
 const Products = () => {
   useTitle("صفحه محصولات");
   const [paginatedProducts, setPaginatedProducts] = useState([]);
   const [layoutType, setLayoutType] = useLocalStorage("layout", "TABLE");
+  const windowSize = useResize();
+  useEffect(() => {
+    if (windowSize.width <= 640) {
+      setLayoutType("GRID");
+    }
+  }, [windowSize, setLayoutType]);
   const {
     data: products,
     // setData: setProducts,

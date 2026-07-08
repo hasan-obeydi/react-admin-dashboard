@@ -14,7 +14,7 @@ const HeaderButtons = ({ layoutType, setLayoutType }) => {
   };
   return (
     <>
-      <div className="icon-hover rounded-lg bg-gray-300 dark:bg-dark-primary border border-color dark:border-gray-700 hover:scale-95">
+      <div className="icon-hover rounded-lg bg-gray-300 dark:bg-dark-primary border border-color dark:border-gray-700 hover:scale-95 hidden sm:block">
         {layoutType === "TABLE" ? (
           <CiGrid41
             onClick={() => setLayoutType("GRID")}
