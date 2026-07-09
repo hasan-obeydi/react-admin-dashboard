@@ -5,8 +5,5 @@ export async function deleteProduct(id) {
       method: "DELETE",
     },
   );
-  if (!response.ok) {
-    throw new Error("Delete failed");
-  }
-  return response.json();
+  return response.ok;
 }

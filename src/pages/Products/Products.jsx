@@ -9,6 +9,7 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import ProductGridView from "../../features/ProductGridView/ProductGridView";
 import useResize from "../../hooks/useResize";
 import { deleteProduct } from "../../api/products";
+import toast, { Toaster } from "react-hot-toast";
 
 const Products = () => {
   useTitle("صفحه محصولات");
@@ -26,12 +27,20 @@ const Products = () => {
     // error: productsError,
     loading: productsLoading,
   } = useFetch("https://react-js-cms.iran.liara.run/api/products");
-  const deleteHandler = async (id) => {
-    await deleteProduct(id);
-    setProducts((prev) => prev.filter((product) => product._id !== id));
+  const deleteHandler = async (id, itemTitle) => {
+    const isDelete = await deleteProduct(id);
+    if (isDelete) {
+      setProducts((prev) => prev.filter((product) => product._id !== id));
+      toast.success(`محصول ${itemTitle} با موفقیت حذف شد.`);
+    } else {
+      toast.error(`محصول ${itemTitle} با موفقیت حذف نشد.`);
+    }
   };
   return (
     <section>
+      <div>
+        <Toaster position="top-left" reverseOrder={false} />
+      </div>
       <SectionTitle
         title={"محصولات"}
         buttons={

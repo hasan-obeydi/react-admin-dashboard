@@ -13,6 +13,7 @@ const RemoveItem = ({ itemId, deleteItem, itemTitle, itemType }) => {
   return (
     <Modal
       itemId={itemId}
+      itemTitle={itemTitle}
       onSubmit={deleteItem}
       title="حذف محصول"
       Trigger={Trigger}

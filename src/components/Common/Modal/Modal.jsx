@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 import useToggle from "../../../hooks/useToggle";
 import ModalFooter from "./components/ModalFooter";
 
-const Modal = ({ itemId, onSubmit, Trigger, children, title }) => {
+const Modal = ({ itemId, itemTitle, onSubmit, Trigger, children, title }) => {
   const [isModalOpen, toggle] = useToggle(false);
   return (
     <>
@@ -23,7 +23,12 @@ const Modal = ({ itemId, onSubmit, Trigger, children, title }) => {
               </div>
             </div>
             <div className="p-4">{children}</div>
-            <ModalFooter itemId={itemId} onSubmit={onSubmit} toggle={toggle} />
+            <ModalFooter
+              itemTitle={itemTitle}
+              itemId={itemId}
+              onSubmit={onSubmit}
+              toggle={toggle}
+            />
           </div>
         </div>
       </Activity>

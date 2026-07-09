@@ -1,4 +1,4 @@
-const ModalFooter = ({ itemId, onSubmit, toggle }) => {
+const ModalFooter = ({ itemId, itemTitle, onSubmit, toggle }) => {
   return (
     <div className="border-t border-color dark:border-gray-700 p-4 mt-2 justify-end flex gap-2">
       <button
@@ -9,8 +9,8 @@ const ModalFooter = ({ itemId, onSubmit, toggle }) => {
       </button>
       <button
         onClick={() => {
-          toggle(); 
-          onSubmit(itemId);
+          toggle();
+          onSubmit(itemId, itemTitle);
         }}
         className="py-2 px-4 bg-gradiant hover:opacity-60 duration-200 rounded-lg cursor-pointer text-white"
       >
