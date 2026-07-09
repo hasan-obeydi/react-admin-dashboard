@@ -77,7 +77,12 @@ const ProductGridCard = (product) => {
           <span className="text-xs">تومان</span>
         </div>
         <div className="flex gap-2 sm:gap-0">
-          <RemoveItem itemTitle={product.title} itemType="محصول" />
+          <RemoveItem
+            deleteItem={product.deleteHandler}
+            itemTitle={product.title}
+            itemId={product._id}
+            itemType="محصول"
+          />
           {/* <ChangeVisibilityItem
               isPublished={product.isPublished}
               itemTitle={product.title}

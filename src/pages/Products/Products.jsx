@@ -53,7 +53,6 @@ const Products = () => {
       {layoutType === "TABLE" ? (
         <ProductTableView
           products={products}
-          setProducts={setProducts}
           paginatedProducts={paginatedProducts}
           setPaginatedProducts={setPaginatedProducts}
           loading={productsLoading}
@@ -65,6 +64,7 @@ const Products = () => {
           paginatedProducts={paginatedProducts}
           setPaginatedProducts={setPaginatedProducts}
           loading={productsLoading}
+          deleteHandler={deleteHandler}
         />
       )}
     </section>
