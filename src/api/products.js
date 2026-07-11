@@ -22,7 +22,7 @@ export async function changeProductVisibility(id, isPublished) {
   );
   return response.ok;
 }
-export async function EditProduct(id, newItem) {
+export async function EditProduct(id, newProduct) {
   const response = await fetch(
     `https://react-js-cms.iran.liara.run/api/products/${id}`,
     {
@@ -30,13 +30,20 @@ export async function EditProduct(id, newItem) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        title: newItem.title,
-        isPublished: newItem.isPublished,
-        entity: newItem.entity,
-        price: newItem.price,
-        description: newItem.description,
-      }),
+      body: JSON.stringify(newProduct),
+    },
+  );
+  return response.ok;
+}
+export async function addProduct(newProduct) {
+  const response = await fetch(
+    `https://react-js-cms.iran.liara.run/api/products`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newProduct),
     },
   );
   return response.ok;

@@ -6,7 +6,7 @@ import { useReducer } from "react";
 import productReducer from "../../../reducers/productReducer";
 
 const EditItemDetails = (props) => {
-  const [newItem, dispatch] = useReducer(productReducer, {
+  const [newProduct, dispatch] = useReducer(productReducer, {
     title: props.itemTitle,
     isPublished: props.isPublished,
     entity: props.itemEntity,
@@ -23,12 +23,12 @@ const EditItemDetails = (props) => {
   return (
     <Modal
       onSubmit={props.editHandler}
-      newItem={newItem}
+      newProduct={newProduct}
       {...props}
       modalTitle="ویرایش محصول"
       Trigger={Trigger}
     >
-      <AddItem newItem={newItem} dispatch={dispatch} />
+      <AddItem newProduct={newProduct} dispatch={dispatch} />
     </Modal>
   );
 };

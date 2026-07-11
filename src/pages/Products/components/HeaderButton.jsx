@@ -4,7 +4,13 @@ import { CiViewTable } from "react-icons/ci";
 import AddItem from "../../../components/Common/AddItem/AddItem";
 import Modal from "../../../components/Common/Modal/Modal";
 
-const HeaderButtons = ({ layoutType, setLayoutType }) => {
+const HeaderButtons = ({
+  layoutType,
+  setLayoutType,
+  newProduct,
+  dispatch,
+  addProductHandler,
+}) => {
   const Trigger = () => {
     return (
       <button className="bg-gradiant px-3 py-2 text-white rounded-lg cursor-pointer hover:scale-95 duration-200">
@@ -27,8 +33,13 @@ const HeaderButtons = ({ layoutType, setLayoutType }) => {
           />
         )}
       </div>
-      <Modal modalTitle={"ایجاد محصول"} Trigger={Trigger}>
-        <AddItem />
+      <Modal
+        onSubmit={addProductHandler}
+        modalTitle={"ایجاد محصول"}
+        Trigger={Trigger}
+        newProduct={newProduct}
+      >
+        <AddItem newProduct={newProduct} dispatch={dispatch} />
       </Modal>
     </>
   );

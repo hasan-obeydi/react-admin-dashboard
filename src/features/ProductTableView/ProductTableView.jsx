@@ -13,7 +13,7 @@ import EditItemDetails from "../../components/Common/EditItem/EditItemDetails";
 import ChangeVisibilityItem from "../../components/Common/EditItem/ChangeVisibilityItem";
 import RemoveItem from "../../components/Common/EditItem/RemoveItem";
 
-const   ProductTableView = ({
+const ProductTableView = ({
   products,
   paginatedProducts,
   setPaginatedProducts,

@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
+
+import toast, { Toaster } from "react-hot-toast";
 
 import SectionTitle from "../../components/Common/SectionTitle";
 import ProductTableView from "../../features/ProductTableView/ProductTableView";
@@ -13,7 +15,8 @@ import {
   deleteProduct,
   EditProduct,
 } from "../../api/products";
-import toast, { Toaster } from "react-hot-toast";
+import productReducer from "../../reducers/productReducer";
+import { DEFAULT_PRODUCTS_IMAGE, productFields } from "../../data/products";
 
 const Products = () => {
   useTitle("صفحه محصولات");
@@ -31,6 +34,13 @@ const Products = () => {
     // error: productsError,
     loading: productsLoading,
   } = useFetch("https://react-js-cms.iran.liara.run/api/products");
+  const [newProduct, dispatch] = useReducer(productReducer, {
+    title: "",
+    isPublished: false,
+    entity: "",
+    price: "",
+    description: "",
+  });
   const deleteHandler = async (id, itemTitle) => {
     const isDelete = await deleteProduct(id);
     if (isDelete) {
@@ -57,23 +67,42 @@ const Products = () => {
       toast.error(`وضعیت نمایش محصول ${itemTitle} به درستی تغییر نکرد.`);
     }
   };
-  const editHandler = async (id, itemTitle, isPublished, newItem) => {
-    const isEdit = await EditProduct(id, newItem);
+  const editHandler = async (id, itemTitle, isPublished, newProduct) => {
+    const isEdit = await EditProduct(id, newProduct);
     if (isEdit) {
       const newProducts = products.map((product) => {
         if (product._id === id) {
-          product.title = newItem.title;
-          product.isPublished = newItem.isPublished;
-          product.entity = newItem.entity;
-          product.price = newItem.price;
-          product.description = newItem.description;
+          product.title = newProduct.title;
+          product.isPublished =
+            newProduct.isPublished === "true" ? true : false;
+          product.entity = newProduct.entity;
+          product.price = newProduct.price;
+          product.description = newProduct.description;
         }
         return product;
       });
       setProducts(newProducts);
+      toast.success("محصول با موفقیت ویرایش شد.");
     } else {
       toast.error(`خطا در ویرایش محصول.`);
     }
+  };
+  const addProductHandler = async (id, itemTitle, isPublished, newProduct) => {
+    setProducts((prev) => [
+      ...prev,
+      {
+        _id: crypto.randomUUID(),
+        title: newProduct.title,
+        image: DEFAULT_PRODUCTS_IMAGE,
+        isPublished: newProduct.isPublished,
+        entity: newProduct.entity,
+        price: newProduct.price,
+        description: newProduct.description,
+      },
+    ]);
+    productFields.map((field) => {
+      dispatch({ type: field.key, payload: "" });
+    });
   };
   return (
     <section>
@@ -84,8 +113,11 @@ const Products = () => {
         title={"محصولات"}
         buttons={
           <HeaderButtons
+            newProduct={newProduct}
+            dispatch={dispatch}
             layoutType={layoutType}
             setLayoutType={setLayoutType}
+            addProductHandler={addProductHandler}
           />
         }
       />

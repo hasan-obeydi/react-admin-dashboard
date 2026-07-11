@@ -9,23 +9,26 @@ const ModalFooter = ({
   itemDescription,
   onSubmit,
   toggle,
-  newItem,
+  newProduct,
 }) => {
   const submitValidation = () => {
-    if (newItem && (!newItem.title || !newItem.price || !newItem.entity)) {
-      toast.error("لطفا مقادیر عنوان و موجودی و قیمت را وارد کنید.");
+    if (
+      newProduct &&
+      (!newProduct.title || !newProduct.price || !newProduct.entity)
+    ) {
+      toast.error("لطفا مقادیر عنوان و موجودی و قیمت را به درستی وارد کنید.");
     } else if (
-      newItem &&
-      newItem.title === itemTitle &&
-      newItem.isPublished === isPublished &&
-      newItem.price === itemPrice &&
-      newItem.entity === itemEntity &&
-      newItem.description === itemDescription
+      newProduct &&
+      newProduct.title === itemTitle &&
+      newProduct.isPublished === isPublished &&
+      newProduct.price === itemPrice &&
+      newProduct.entity === itemEntity &&
+      newProduct.description === itemDescription
     ) {
       toast.error("لطفا مقادیر را تغییر دهید.");
     } else {
       toggle();
-      onSubmit(itemId, itemTitle, isPublished, newItem);
+      onSubmit(itemId, itemTitle, isPublished, newProduct);
     }
   };
   return (

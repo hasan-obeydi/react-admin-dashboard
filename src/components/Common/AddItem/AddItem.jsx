@@ -1,8 +1,6 @@
-// import { useReducer } from "react";
 import { productFields } from "../../../data/products";
-// import productReducer from "../../../reducers/productReducer";
 
-const AddItem = ({ newItem, dispatch }) => {
+const AddItem = ({ newProduct, dispatch }) => {
   return (
     <form id="submitForm" className="space-y-3">
       {productFields.map((field) => (
@@ -16,7 +14,7 @@ const AddItem = ({ newItem, dispatch }) => {
               id={field.key}
               type="text"
               className="input-style min-h-10 max-h-20"
-              value={newItem && newItem[field.key]}
+              value={newProduct && newProduct[field.key]}
               onChange={(event) =>
                 dispatch({ type: field.key, payload: event.target.value })
               }
@@ -25,10 +23,11 @@ const AddItem = ({ newItem, dispatch }) => {
             <select
               id={field.key}
               className="input-style"
-              value={newItem && newItem[field.key]}
-              onChange={(event) =>
-                dispatch({ type: field.key, payload: event.target.value })
-              }
+              value={newProduct && newProduct[field.key]}
+              onChange={(event) => {
+                dispatch({ type: field.key, payload: event.target.value });
+                console.log(event.target.value);
+              }}
             >
               <option
                 className="dark:text-white dark:bg-dark-primary"
@@ -48,7 +47,7 @@ const AddItem = ({ newItem, dispatch }) => {
               id={field.key}
               type={field.inputType}
               className="input-style"
-              value={newItem && newItem[field.key]}
+              value={newProduct && newProduct[field.key]}
               onChange={(event) => {
                 dispatch({ type: field.key, payload: event.target.value });
               }}
