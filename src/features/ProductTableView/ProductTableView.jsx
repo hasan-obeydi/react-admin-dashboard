@@ -13,12 +13,14 @@ import EditItemDetails from "../../components/Common/EditItem/EditItemDetails";
 import ChangeVisibilityItem from "../../components/Common/EditItem/ChangeVisibilityItem";
 import RemoveItem from "../../components/Common/EditItem/RemoveItem";
 
-const ProductTableView = ({
+const   ProductTableView = ({
   products,
   paginatedProducts,
   setPaginatedProducts,
+  changeVisbilityHandler,
   loading,
   deleteHandler,
+  editHandler,
 }) => {
   return (
     <Table
@@ -62,22 +64,32 @@ const ProductTableView = ({
               </TableCell>
               <TableCell>{product.entity}</TableCell>
               <TableCell>
-                {product.price.toLocaleString("fa-IR")} <span>تومان</span>
+                {product.price?.toLocaleString("fa-IR")} <span>تومان</span>
               </TableCell>
               <TableCell>
                 <div className="flex items-center">
                   <RemoveItem
                     itemId={product._id}
-                    deleteItem={deleteHandler}
+                    deleteHandler={deleteHandler}
                     itemTitle={product.title}
                     itemType="محصول"
                   />
                   <ChangeVisibilityItem
+                    itemId={product._id}
                     isPublished={product.isPublished}
                     itemTitle={product.title}
                     itemType="محصول"
+                    changeVisbilityHandler={changeVisbilityHandler}
                   />
-                  <EditItemDetails {...product} />
+                  <EditItemDetails
+                    editHandler={editHandler}
+                    itemId={product._id}
+                    itemTitle={product.title}
+                    isPublished={product.isPublished}
+                    itemPrice={product.price}
+                    itemEntity={product.entity}
+                    itemDescription={product.description}
+                  />
                 </div>
               </TableCell>
             </TableRow>

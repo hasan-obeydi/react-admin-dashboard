@@ -7,6 +7,8 @@ const ProductGridView = ({
   setPaginatedProducts,
   loading,
   deleteHandler,
+  changeVisbilityHandler,
+  editHandler,
 }) => {
   return (
     <div>
@@ -17,6 +19,8 @@ const ProductGridView = ({
           {paginatedProducts.map((product) => (
             <ProducGridCard
               deleteHandler={deleteHandler}
+              changeVisbilityHandler={changeVisbilityHandler}
+              editHandler={editHandler}
               key={product._id}
               {...product}
             />

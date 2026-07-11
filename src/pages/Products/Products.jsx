@@ -8,7 +8,11 @@ import HeaderButtons from "./components/HeaderButton";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import ProductGridView from "../../features/ProductGridView/ProductGridView";
 import useResize from "../../hooks/useResize";
-import { deleteProduct } from "../../api/products";
+import {
+  changeProductVisibility,
+  deleteProduct,
+  EditProduct,
+} from "../../api/products";
 import toast, { Toaster } from "react-hot-toast";
 
 const Products = () => {
@@ -36,6 +40,41 @@ const Products = () => {
       toast.error(`محصول ${itemTitle} با موفقیت حذف نشد.`);
     }
   };
+  const changeVisbilityHandler = async (id, itemTitle, isPublished) => {
+    const isChange = await changeProductVisibility(id, isPublished);
+    if (isChange) {
+      const newproducts = products.map((product) => {
+        if (product._id === id) {
+          product.isPublished = !isPublished;
+        }
+        return product;
+      });
+      setProducts(newproducts);
+      toast.success(
+        `وضعیت نمایش محصول ${itemTitle} به ${isPublished ? "خصوصی" : "عمومی"} تغییر کرد.`,
+      );
+    } else {
+      toast.error(`وضعیت نمایش محصول ${itemTitle} به درستی تغییر نکرد.`);
+    }
+  };
+  const editHandler = async (id, itemTitle, isPublished, newItem) => {
+    const isEdit = await EditProduct(id, newItem);
+    if (isEdit) {
+      const newProducts = products.map((product) => {
+        if (product._id === id) {
+          product.title = newItem.title;
+          product.isPublished = newItem.isPublished;
+          product.entity = newItem.entity;
+          product.price = newItem.price;
+          product.description = newItem.description;
+        }
+        return product;
+      });
+      setProducts(newProducts);
+    } else {
+      toast.error(`خطا در ویرایش محصول.`);
+    }
+  };
   return (
     <section>
       <div>
@@ -57,6 +96,8 @@ const Products = () => {
           setPaginatedProducts={setPaginatedProducts}
           loading={productsLoading}
           deleteHandler={deleteHandler}
+          changeVisbilityHandler={changeVisbilityHandler}
+          editHandler={editHandler}
         />
       ) : (
         <ProductGridView
@@ -65,6 +106,8 @@ const Products = () => {
           setPaginatedProducts={setPaginatedProducts}
           loading={productsLoading}
           deleteHandler={deleteHandler}
+          changeVisbilityHandler={changeVisbilityHandler}
+          editHandler={editHandler}
         />
       )}
     </section>

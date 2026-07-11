@@ -1,8 +1,10 @@
+// import { useReducer } from "react";
 import { productFields } from "../../../data/products";
+// import productReducer from "../../../reducers/productReducer";
 
-const AddItem = () => {
+const AddItem = ({ newItem, dispatch }) => {
   return (
-    <div className="space-y-3">
+    <form id="submitForm" className="space-y-3">
       {productFields.map((field) => (
         <div key={field.key} className="flex flex-col gap-3">
           <label htmlFor={field.key} className="text-sm">
@@ -14,9 +16,20 @@ const AddItem = () => {
               id={field.key}
               type="text"
               className="input-style min-h-10 max-h-20"
+              value={newItem && newItem[field.key]}
+              onChange={(event) =>
+                dispatch({ type: field.key, payload: event.target.value })
+              }
             />
           ) : field.inputType === "select" ? (
-            <select id={field.key} className="input-style">
+            <select
+              id={field.key}
+              className="input-style"
+              value={newItem && newItem[field.key]}
+              onChange={(event) =>
+                dispatch({ type: field.key, payload: event.target.value })
+              }
+            >
               <option
                 className="dark:text-white dark:bg-dark-primary"
                 value={false}
@@ -35,11 +48,16 @@ const AddItem = () => {
               id={field.key}
               type={field.inputType}
               className="input-style"
+              value={newItem && newItem[field.key]}
+              onChange={(event) => {
+                dispatch({ type: field.key, payload: event.target.value });
+              }}
+              required
             />
           )}
         </div>
       ))}
-    </div>
+    </form>
   );
 };
 

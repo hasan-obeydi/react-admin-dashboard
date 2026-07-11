@@ -3,7 +3,13 @@ import clsx from "clsx";
 
 import Modal from "../Modal/Modal";
 
-const ChangeVisibilityItem = ({ isPublished, itemTitle, itemType }) => {
+const ChangeVisibilityItem = ({
+  itemId,
+  changeVisbilityHandler,
+  isPublished,
+  itemTitle,
+  itemType,
+}) => {
   const Trigger = () => {
     return (
       <div className="text-blue-500 cursor-pointer hover:bg-gray-300  dark:hover:bg-gray-700 p-2 rounded-full transition duration-150">
@@ -12,7 +18,14 @@ const ChangeVisibilityItem = ({ isPublished, itemTitle, itemType }) => {
     );
   };
   return (
-    <Modal title="تغییر وضعیت نمایش" Trigger={Trigger}>
+    <Modal
+      itemId={itemId}
+      itemTitle={itemTitle}
+      isPublished={isPublished}
+      onSubmit={changeVisbilityHandler}
+      modalTitle="تغییر وضعیت نمایش"
+      Trigger={Trigger}
+    >
       <div className="flex-center">
         <p>
           آیا از{" "}

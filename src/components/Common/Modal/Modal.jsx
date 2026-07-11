@@ -5,11 +5,11 @@ import { IoClose } from "react-icons/io5";
 import useToggle from "../../../hooks/useToggle";
 import ModalFooter from "./components/ModalFooter";
 
-const Modal = ({ itemId, itemTitle, onSubmit, Trigger, children, title }) => {
+const Modal = (props) => {
   const [isModalOpen, toggle] = useToggle(false);
   return (
     <>
-      <div onClick={toggle}>{Trigger()}</div>
+      <div onClick={toggle}>{props.Trigger()}</div>
       <Activity mode={isModalOpen ? "visible" : "hidden"}>
         <div
           id="modal-screen"
@@ -17,18 +17,13 @@ const Modal = ({ itemId, itemTitle, onSubmit, Trigger, children, title }) => {
         >
           <div className="max-w-120 w-[80%] bg-white dark:bg-dark-body rounded-lg">
             <div className="flex justify-between items-center border-b border-color dark:border-gray-700 p-4">
-              <h3 className="text-xl">{title}</h3>
+              <h3 className="text-xl">{props.modalTitle}</h3>
               <div className="icon-hover" onClick={() => toggle()}>
                 <IoClose className="text-2xl" />
               </div>
             </div>
-            <div className="p-4">{children}</div>
-            <ModalFooter
-              itemTitle={itemTitle}
-              itemId={itemId}
-              onSubmit={onSubmit}
-              toggle={toggle}
-            />
+            <div className="p-4">{props.children}</div>
+            <ModalFooter toggle={toggle} {...props} />
           </div>
         </div>
       </Activity>

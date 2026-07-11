@@ -2,7 +2,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 
 import Modal from "../Modal/Modal";
 
-const RemoveItem = ({ itemId, deleteItem, itemTitle, itemType }) => {
+const RemoveItem = ({ itemId, deleteHandler, itemTitle, itemType }) => {
   const Trigger = () => {
     return (
       <div className="text-red-500 cursor-pointer hover:bg-gray-300  dark:hover:bg-gray-700 p-2 rounded-full transition duration-150">
@@ -14,8 +14,8 @@ const RemoveItem = ({ itemId, deleteItem, itemTitle, itemType }) => {
     <Modal
       itemId={itemId}
       itemTitle={itemTitle}
-      onSubmit={deleteItem}
-      title="حذف محصول"
+      onSubmit={deleteHandler}
+      modalTitle="حذف محصول"
       Trigger={Trigger}
     >
       <div className="flex-center">

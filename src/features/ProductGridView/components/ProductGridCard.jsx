@@ -46,7 +46,14 @@ const ProductGridCard = (product) => {
           {product.description}
         </p>
         <div className="mt-3 flex items-center justify-between flex-wrap gap-4">
-          <Modal title="تغییر وضعیت نمایش" Trigger={Trigger}>
+          <Modal
+            itemId={product._id}
+            isPublished={product.isPublished}
+            itemTitle={product.title}
+            onSubmit={product.changeVisbilityHandler}
+            title="تغییر وضعیت نمایش"
+            Trigger={Trigger}
+          >
             <div className="flex-center">
               <p>
                 آیا از{" "}
@@ -78,17 +85,20 @@ const ProductGridCard = (product) => {
         </div>
         <div className="flex gap-2 sm:gap-0">
           <RemoveItem
-            deleteItem={product.deleteHandler}
+            deleteHandler={product.deleteHandler}
             itemTitle={product.title}
             itemId={product._id}
             itemType="محصول"
           />
-          {/* <ChangeVisibilityItem
-              isPublished={product.isPublished}
-              itemTitle={product.title}
-              itemType="محصول"
-            /> */}
-          <EditItemDetails product={product} />
+          <EditItemDetails
+            editHandler={product.editHandler}
+            itemId={product._id}
+            itemTitle={product.title}
+            isPublished={product.isPublished}
+            itemPrice={product.price}
+            itemEntity={product.entity}
+            itemDescription={product.description}
+          />
         </div>
       </footer>
     </article>

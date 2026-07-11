@@ -27,7 +27,7 @@ const HeaderButtons = ({ layoutType, setLayoutType }) => {
           />
         )}
       </div>
-      <Modal title={"ایجاد محصول"} Trigger={Trigger}>
+      <Modal modalTitle={"ایجاد محصول"} Trigger={Trigger}>
         <AddItem />
       </Modal>
     </>
