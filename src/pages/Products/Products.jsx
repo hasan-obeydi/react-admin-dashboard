@@ -11,12 +11,14 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import ProductGridView from "../../features/ProductGridView/ProductGridView";
 import useResize from "../../hooks/useResize";
 import {
+  addProduct,
   changeProductVisibility,
   deleteProduct,
   EditProduct,
+  getProducts,
 } from "../../api/products";
 import productReducer from "../../reducers/productReducer";
-import { DEFAULT_PRODUCTS_IMAGE, productFields } from "../../data/products";
+import { clearInputs } from "../../utils/products";
 
 const Products = () => {
   useTitle("صفحه محصولات");
@@ -41,68 +43,112 @@ const Products = () => {
     price: "",
     description: "",
   });
-  const deleteHandler = async (id, itemTitle) => {
-    const isDelete = await deleteProduct(id);
-    if (isDelete) {
-      setProducts((prev) => prev.filter((product) => product._id !== id));
-      toast.success(`محصول ${itemTitle} با موفقیت حذف شد.`);
-    } else {
-      toast.error(`محصول ${itemTitle} با موفقیت حذف نشد.`);
-    }
-  };
-  const changeVisbilityHandler = async (id, itemTitle, isPublished) => {
-    const isChange = await changeProductVisibility(id, isPublished);
-    if (isChange) {
-      const newproducts = products.map((product) => {
-        if (product._id === id) {
-          product.isPublished = !isPublished;
-        }
-        return product;
-      });
-      setProducts(newproducts);
-      toast.success(
-        `وضعیت نمایش محصول ${itemTitle} به ${isPublished ? "خصوصی" : "عمومی"} تغییر کرد.`,
+  const submitValidation = (item, newProduct, toggle) => {
+    if (
+      newProduct &&
+      (!newProduct.title ||
+        !newProduct.price ||
+        !newProduct.entity ||
+        !newProduct.description)
+    ) {
+      toast.error(
+        "لطفا مقادیر عنوان، موجودی، قیمت و توضیحات را به درستی وارد کنید.",
       );
+    } else if (
+      newProduct &&
+      item &&
+      newProduct.title === item.title &&
+      newProduct.isPublished === item.isPublished &&
+      Number(newProduct.price) === Number(item.price) &&
+      Number(newProduct.entity) === Number(item.entity) &&
+      newProduct.description === item.description
+    ) {
+      toast.error("لطفا مقادیر را تغییر دهید.");
     } else {
-      toast.error(`وضعیت نمایش محصول ${itemTitle} به درستی تغییر نکرد.`);
+      toggle();
+      return true;
     }
   };
-  const editHandler = async (id, itemTitle, isPublished, newProduct) => {
-    const isEdit = await EditProduct(id, newProduct);
-    if (isEdit) {
-      const newProducts = products.map((product) => {
-        if (product._id === id) {
-          product.title = newProduct.title;
-          product.isPublished =
-            newProduct.isPublished === "true" ? true : false;
-          product.entity = newProduct.entity;
-          product.price = newProduct.price;
-          product.description = newProduct.description;
+  const deleteHandler = async (item, newProduct, toggle) => {
+    toggle();
+    await toast
+      .promise(deleteProduct(item._id), {
+        loading: "در حال حذف محصول...",
+        success: `محصول ${item.title} با موفقیت حذف شد.`,
+        error: `خطا در حذف محصول ${item.title}`,
+      })
+      .then((response) => {
+        if (response.ok) {
+          setProducts((prev) =>
+            prev.filter((product) => product._id !== item._id),
+          );
         }
-        return product;
       });
-      setProducts(newProducts);
-      toast.success("محصول با موفقیت ویرایش شد.");
-    } else {
-      toast.error(`خطا در ویرایش محصول.`);
+  };
+  const changeVisbilityHandler = async (item, newProduct, toggle) => {
+    toggle();
+    await toast
+      .promise(changeProductVisibility(item._id, item.isPublished), {
+        loading: "در حال تغییر وضعیت نمایش محصول...",
+        success: `وضعیت نمایش محصول ${item.title} به ${item.isPublished ? "خصوصی" : "عمومی"} تغییر کرد.`,
+        error: `خطا در تغییر وضعیت نمایش محصول ${item.title}.`,
+      })
+      .then((response) => {
+        if (response.ok) {
+          const newproducts = products.map((product) => {
+            if (product._id === item._id) {
+              product.isPublished = !item.isPublished;
+            }
+            return product;
+          });
+          setProducts(newproducts);
+        }
+      });
+  };
+  const editHandler = async (item, newProduct, toggle) => {
+    const isSubmit = submitValidation(item, newProduct, toggle);
+    if (isSubmit) {
+      await toast
+        .promise(EditProduct(item._id, newProduct), {
+          loading: "در حال ویرایش محصول...",
+          success: "محصول با موفقیت ویرایش شد.",
+          error: `خطا در ویرایش محصول.`,
+        })
+        .then((response) => {
+          if (response.ok) {
+            const newProducts = products.map((product) => {
+              if (product._id === item._id) {
+                product.title = newProduct.title;
+                product.isPublished = newProduct.isPublished;
+                product.entity = Number(newProduct.entity);
+                product.price = Number(newProduct.price);
+                product.description = newProduct.description;
+              }
+              return product;
+            });
+            setProducts(newProducts);
+          }
+        });
     }
   };
-  const addProductHandler = async (id, itemTitle, isPublished, newProduct) => {
-    setProducts((prev) => [
-      ...prev,
-      {
-        _id: crypto.randomUUID(),
-        title: newProduct.title,
-        image: DEFAULT_PRODUCTS_IMAGE,
-        isPublished: newProduct.isPublished,
-        entity: newProduct.entity,
-        price: newProduct.price,
-        description: newProduct.description,
-      },
-    ]);
-    productFields.map((field) => {
-      dispatch({ type: field.key, payload: "" });
-    });
+  const addProductHandler = async (item, newProduct, toggle) => {
+    const isSubmit = submitValidation(item, newProduct, toggle);
+    if (isSubmit) {
+      await toast
+        .promise(addProduct(newProduct), {
+          loading: "در حال افزودن محصول",
+          success: `محصول ${newProduct.title} با موفقیت اضافه شد.`,
+          error: `خطا در افزودن محصول`,
+        })
+        .then((response) => {
+          if (response.ok) {
+            getProducts().then((datas) => {
+              setProducts((prev) => [...prev, datas.slice(-1)[0]]);
+            });
+            clearInputs(dispatch);
+          }
+        });
+    }
   };
   return (
     <section>

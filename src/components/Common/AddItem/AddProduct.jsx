@@ -1,6 +1,7 @@
+import { NumericFormat } from "react-number-format";
 import { productFields } from "../../../data/products";
 
-const AddItem = ({ newProduct, dispatch }) => {
+const AddProduct = ({ newProduct, dispatch }) => {
   return (
     <form id="submitForm" className="space-y-3">
       {productFields.map((field) => (
@@ -24,25 +25,18 @@ const AddItem = ({ newProduct, dispatch }) => {
               id={field.key}
               className="input-style"
               value={newProduct && newProduct[field.key]}
-              onChange={(event) => {
-                dispatch({ type: field.key, payload: event.target.value });
-                console.log(event.target.value);
+              onChange={() => {
+                dispatch({ type: field.key, payload: !newProduct[field.key] });
               }}
             >
-              <option
-                className="dark:text-white dark:bg-dark-primary"
-                value={false}
-              >
+              <option className="dark:text-white dark:bg-dark-primary" value={false}>
                 منتشر نشده
               </option>
-              <option
-                className="dark:text-white dark:bg-dark-primary"
-                value={true}
-              >
+              <option className="dark:text-white dark:bg-dark-primary" value={true}>
                 منتشر شده
               </option>
             </select>
-          ) : (
+          ) : field.inputType === "text" || field.key === "entity" ? (
             <input
               id={field.key}
               type={field.inputType}
@@ -53,6 +47,18 @@ const AddItem = ({ newProduct, dispatch }) => {
               }}
               required
             />
+          ) : (
+            <NumericFormat
+              thousandSeparator=","
+              id={field.key}
+              type="text"
+              className="input-style"
+              value={newProduct && newProduct[field.key]}
+              onValueChange={(values) => {
+                dispatch({ type: field.key, payload: values.value });
+              }}
+              required
+            />
           )}
         </div>
       ))}
@@ -60,4 +66,4 @@ const AddItem = ({ newProduct, dispatch }) => {
   );
 };
 
-export default AddItem;
+export default AddProduct;

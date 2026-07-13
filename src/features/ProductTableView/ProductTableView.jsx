@@ -69,26 +69,19 @@ const ProductTableView = ({
               <TableCell>
                 <div className="flex items-center">
                   <RemoveItem
-                    itemId={product._id}
+                    item={product}
                     deleteHandler={deleteHandler}
-                    itemTitle={product.title}
                     itemType="محصول"
                   />
                   <ChangeVisibilityItem
-                    itemId={product._id}
-                    isPublished={product.isPublished}
-                    itemTitle={product.title}
+                    item={product}
                     itemType="محصول"
                     changeVisbilityHandler={changeVisbilityHandler}
                   />
                   <EditItemDetails
                     editHandler={editHandler}
-                    itemId={product._id}
-                    itemTitle={product.title}
-                    isPublished={product.isPublished}
-                    itemPrice={product.price}
-                    itemEntity={product.entity}
-                    itemDescription={product.description}
+                    item={product}
+                    itemType="محصول"
                   />
                 </div>
               </TableCell>

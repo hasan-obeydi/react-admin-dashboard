@@ -1,7 +1,7 @@
 import { CiGrid41 } from "react-icons/ci";
 import { CiViewTable } from "react-icons/ci";
 
-import AddItem from "../../../components/Common/AddItem/AddItem";
+import AddProduct from "../../../components/Common/AddItem/AddProduct";
 import Modal from "../../../components/Common/Modal/Modal";
 
 const HeaderButtons = ({
@@ -35,11 +35,12 @@ const HeaderButtons = ({
       </div>
       <Modal
         onSubmit={addProductHandler}
+        dispatch={dispatch}
         modalTitle={"ایجاد محصول"}
         Trigger={Trigger}
         newProduct={newProduct}
       >
-        <AddItem newProduct={newProduct} dispatch={dispatch} />
+        <AddProduct newProduct={newProduct} dispatch={dispatch} />
       </Modal>
     </>
   );

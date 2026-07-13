@@ -7,7 +7,6 @@ import {
 } from "../actions/product";
 
 const productReducer = (item, action) => {
-  console.log(action);
   switch (action.type) {
     case TITLE: {
       return {

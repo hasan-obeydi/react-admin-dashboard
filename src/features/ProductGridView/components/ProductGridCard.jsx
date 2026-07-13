@@ -8,7 +8,12 @@ import RemoveItem from "../../../components/Common/EditItem/RemoveItem";
 import EditItemDetails from "../../../components/Common/EditItem/EditItemDetails";
 import Modal from "../../../components/Common/Modal/Modal";
 
-const ProductGridCard = (product) => {
+const ProductGridCard = ({
+  deleteHandler,
+  changeVisbilityHandler,
+  editHandler,
+  product,
+}) => {
   const Trigger = () => {
     return (
       <div
@@ -32,25 +37,27 @@ const ProductGridCard = (product) => {
     );
   };
   return (
-    <article className="bg-white dark:bg-dark-primary rounded-lg p-4 hover:shadow-sm  border border-color dark:border-gray-700">
-      <header className="rounded-lg overflow-hidden">
-        <img
-          className="w-full object-cover hover:scale-120 duration-300"
-          src={DEFAULT_PRODUCTS_IMAGE}
-          alt={product.title}
-        />
+    <article className="bg-white dark:bg-dark-primary rounded-lg p-4 hover:shadow-sm  border border-color dark:border-gray-700 flex flex-col justify-between">
+      <header>
+        <div className="rounded-lg overflow-hidden">
+          <img
+            className="w-full object-cover hover:scale-120 duration-300"
+            src={DEFAULT_PRODUCTS_IMAGE}
+            alt={product.title}
+          />
+        </div>
+        <div className="mt-3">
+          <h4>{product.title}</h4>
+          <p className="text-sm text-gray-500 mt-2 min-h-10">
+            {product.description}
+          </p>
+        </div>
       </header>
-      <main className="mt-4">
-        <h4>{product.title}</h4>
-        <p className="text-sm text-gray-500 mt-1 min-h-10">
-          {product.description}
-        </p>
-        <div className="mt-3 flex items-center justify-between flex-wrap gap-4">
+      <footer className="mt-4">
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <Modal
-            itemId={product._id}
-            isPublished={product.isPublished}
-            itemTitle={product.title}
-            onSubmit={product.changeVisbilityHandler}
+            item={product}
+            onSubmit={changeVisbilityHandler}
             title="تغییر وضعیت نمایش"
             Trigger={Trigger}
           >
@@ -75,30 +82,25 @@ const ProductGridCard = (product) => {
             <span className="text-xs">تعداد : {product.entity}</span>
           </div>
         </div>
-      </main>
-      <footer className="mt-2 flex items-center justify-between flex-wrap ">
-        <div>
-          <span className="font-bold text-sm">
-            {product.price.toLocaleString("fa-IR")}
-          </span>{" "}
-          <span className="text-xs">تومان</span>
-        </div>
-        <div className="flex gap-2 sm:gap-0">
-          <RemoveItem
-            deleteHandler={product.deleteHandler}
-            itemTitle={product.title}
-            itemId={product._id}
-            itemType="محصول"
-          />
-          <EditItemDetails
-            editHandler={product.editHandler}
-            itemId={product._id}
-            itemTitle={product.title}
-            isPublished={product.isPublished}
-            itemPrice={product.price}
-            itemEntity={product.entity}
-            itemDescription={product.description}
-          />
+        <div className="mt-2 flex items-center justify-between flex-wrap">
+          <div>
+            <span className="font-bold text-sm">
+              {product.price.toLocaleString("fa-IR")}
+            </span>{" "}
+            <span className="text-xs">تومان</span>
+          </div>
+          <div className="flex gap-2 sm:gap-0">
+            <RemoveItem
+              deleteHandler={deleteHandler}
+              item={product}
+              itemType="محصول"
+            />
+            <EditItemDetails
+              editHandler={editHandler}
+              item={product}
+              itemType="محصول"
+            />
+          </div>
         </div>
       </footer>
     </article>

@@ -20,7 +20,7 @@ const productFields = [
   { label: "عنوان محصول", key: TITLE, inputType: "text" },
   { label: "وضعیت انتشار", key: IS_PUBLISHED, inputType: "select" },
   { label: "تعداد موجودی", key: ENTITY, inputType: "number" },
-  { label: "قیمت محصول", key: PRICE, inputType: "number" },
+  { label: "قیمت محصول (تومان)", key: PRICE, inputType: "number" },
   { label: "توضیحات محصول", key: DESCRIPTION, inputType: "textarea" },
 ];
 

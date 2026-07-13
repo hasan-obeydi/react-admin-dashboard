@@ -3,13 +3,7 @@ import clsx from "clsx";
 
 import Modal from "../Modal/Modal";
 
-const ChangeVisibilityItem = ({
-  itemId,
-  changeVisbilityHandler,
-  isPublished,
-  itemTitle,
-  itemType,
-}) => {
+const ChangeVisibilityItem = ({ item, changeVisbilityHandler, itemType }) => {
   const Trigger = () => {
     return (
       <div className="text-blue-500 cursor-pointer hover:bg-gray-300  dark:hover:bg-gray-700 p-2 rounded-full transition duration-150">
@@ -19,9 +13,7 @@ const ChangeVisibilityItem = ({
   };
   return (
     <Modal
-      itemId={itemId}
-      itemTitle={itemTitle}
-      isPublished={isPublished}
+      item={item}
       onSubmit={changeVisbilityHandler}
       modalTitle="تغییر وضعیت نمایش"
       Trigger={Trigger}
@@ -30,12 +22,14 @@ const ChangeVisibilityItem = ({
         <p>
           آیا از{" "}
           <span
-            className={clsx(isPublished ? "text-red-500" : "text-green-500")}
+            className={clsx(
+              item.isPublished ? "text-red-500" : "text-green-500",
+            )}
           >
-            {isPublished ? "خصوصی" : "عمومی"}
+            {item.isPublished ? "خصوصی" : "عمومی"}
           </span>{" "}
-          کردن {itemType} <span className="font-bold">{itemTitle}</span> اطمینان
-          دارید؟
+          کردن {itemType} <span className="font-bold">{item.title}</span>{" "}
+          اطمینان دارید؟
         </p>
       </div>
     </Modal>

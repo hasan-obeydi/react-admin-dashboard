@@ -4,7 +4,7 @@ const LastUserCard = ({ username, email }) => {
   return (
     <Link
       to="/users"
-      className="flex items-center gap-4 border border-color p-4 rounded-lg dark:border-gray-700 transition-transform duration-300 hover:scale-103 shadow-[inset_0_-2px_4px_rgba(0,0,0,0.1)]"
+      className="flex items-center flex-wrap gap-4 border border-color p-4 rounded-lg dark:border-gray-700 transition-transform duration-300 hover:scale-103 shadow-[inset_0_-2px_4px_rgba(0,0,0,0.1)]"
     >
       <div className="w-24 rounded-full overflow-hidden">
         <img

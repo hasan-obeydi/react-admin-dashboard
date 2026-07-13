@@ -22,7 +22,7 @@ const ProductGridView = ({
               changeVisbilityHandler={changeVisbilityHandler}
               editHandler={editHandler}
               key={product._id}
-              {...product}
+              product={product}
             />
           ))}
         </div>

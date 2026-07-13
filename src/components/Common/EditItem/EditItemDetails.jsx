@@ -1,17 +1,17 @@
 import { FaEdit } from "react-icons/fa";
 
 import Modal from "../Modal/Modal";
-import AddItem from "../AddItem/AddItem";
 import { useReducer } from "react";
 import productReducer from "../../../reducers/productReducer";
+import AddProduct from "../AddItem/AddProduct";
 
-const EditItemDetails = (props) => {
+const EditItemDetails = ({ item, editHandler, itemType }) => {
   const [newProduct, dispatch] = useReducer(productReducer, {
-    title: props.itemTitle,
-    isPublished: props.isPublished,
-    entity: props.itemEntity,
-    price: props.itemPrice,
-    description: props.itemDescription,
+    title: item.title,
+    isPublished: item.isPublished,
+    entity: item.entity,
+    price: item.price,
+    description: item.description,
   });
   const Trigger = () => {
     return (
@@ -22,13 +22,13 @@ const EditItemDetails = (props) => {
   };
   return (
     <Modal
-      onSubmit={props.editHandler}
+      onSubmit={editHandler}
       newProduct={newProduct}
-      {...props}
-      modalTitle="ویرایش محصول"
+      item={item}
+      modalTitle={`ویرایش ${itemType}`}
       Trigger={Trigger}
     >
-      <AddItem newProduct={newProduct} dispatch={dispatch} />
+      <AddProduct newProduct={newProduct} dispatch={dispatch} />
     </Modal>
   );
 };

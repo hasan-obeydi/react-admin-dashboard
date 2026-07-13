@@ -1,3 +1,10 @@
+export async function getProducts() {
+  const response = await fetch(
+    "https://react-js-cms.iran.liara.run/api/products",
+  );
+  const data = await response.json();
+  return data;
+}
 export async function deleteProduct(id) {
   const response = await fetch(
     `https://react-js-cms.iran.liara.run/api/products/${id}`,
@@ -5,7 +12,7 @@ export async function deleteProduct(id) {
       method: "DELETE",
     },
   );
-  return response.ok;
+  return response;
 }
 export async function changeProductVisibility(id, isPublished) {
   const response = await fetch(
@@ -20,7 +27,7 @@ export async function changeProductVisibility(id, isPublished) {
       }),
     },
   );
-  return response.ok;
+  return response;
 }
 export async function EditProduct(id, newProduct) {
   const response = await fetch(
@@ -30,10 +37,16 @@ export async function EditProduct(id, newProduct) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newProduct),
+      body: JSON.stringify({
+        title: newProduct.title,
+        isPublished: newProduct.isPublished,
+        entity: Number(newProduct.entity),
+        price: Number(newProduct.price),
+        description: newProduct.description,
+      }),
     },
   );
-  return response.ok;
+  return response;
 }
 export async function addProduct(newProduct) {
   const response = await fetch(
@@ -43,8 +56,14 @@ export async function addProduct(newProduct) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newProduct),
+      body: JSON.stringify({
+        title: newProduct.title,
+        isPublished: newProduct.isPublished,
+        entity: Number(newProduct.entity),
+        price: Number(newProduct.price),
+        description: newProduct.description,
+      }),
     },
   );
-  return response.ok;
+  return response;
 }
