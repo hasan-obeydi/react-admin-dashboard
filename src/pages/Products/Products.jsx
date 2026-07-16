@@ -6,7 +6,7 @@ import SectionTitle from "../../components/Common/SectionTitle";
 import ProductTableView from "../../features/ProductTableView/ProductTableView";
 import useFetch from "../../hooks/useFetch";
 import useTitle from "../../hooks/useTitle";
-import HeaderButtons from "./components/HeaderButton";
+import HeaderButtons from "./components/HeaderButtons";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import ProductGridView from "../../features/ProductGridView/ProductGridView";
 import useResize from "../../hooks/useResize";
@@ -23,13 +23,16 @@ import { clearInputs } from "../../utils/products";
 const Products = () => {
   useTitle("صفحه محصولات");
   const [paginatedProducts, setPaginatedProducts] = useState([]);
-  const [layoutType, setLayoutType] = useLocalStorage("layout", "TABLE");
+  const [productsLayoutType, setProductsLayoutType] = useLocalStorage(
+    "productsLayout",
+    "TABLE",
+  );
   const windowSize = useResize();
   useEffect(() => {
     if (windowSize.width <= 640) {
-      setLayoutType("GRID");
+      setProductsLayoutType("GRID");
     }
-  }, [windowSize, setLayoutType]);
+  }, [windowSize, setProductsLayoutType]);
   const {
     data: products,
     setData: setProducts,
@@ -161,13 +164,13 @@ const Products = () => {
           <HeaderButtons
             newProduct={newProduct}
             dispatch={dispatch}
-            layoutType={layoutType}
-            setLayoutType={setLayoutType}
+            layoutType={productsLayoutType}
+            setLayoutType={setProductsLayoutType}
             addProductHandler={addProductHandler}
           />
         }
       />
-      {layoutType === "TABLE" ? (
+      {productsLayoutType === "TABLE" ? (
         <ProductTableView
           products={products}
           paginatedProducts={paginatedProducts}

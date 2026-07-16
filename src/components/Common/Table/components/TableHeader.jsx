@@ -11,7 +11,7 @@ const TableHeader = ({ header }) => {
       ) : (
         <div className="flex items-center gap-4">
           <TableFilter />
-          <TableSearch />
+          <TableSearch header={header} />
         </div>
       )}
     </div>
