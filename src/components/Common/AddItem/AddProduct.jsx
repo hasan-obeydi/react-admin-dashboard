@@ -29,10 +29,16 @@ const AddProduct = ({ newProduct, dispatch }) => {
                 dispatch({ type: field.key, payload: !newProduct[field.key] });
               }}
             >
-              <option className="dark:text-white dark:bg-dark-primary" value={false}>
+              <option
+                className="dark:text-white dark:bg-dark-primary"
+                value={false}
+              >
                 منتشر نشده
               </option>
-              <option className="dark:text-white dark:bg-dark-primary" value={true}>
+              <option
+                className="dark:text-white dark:bg-dark-primary"
+                value={true}
+              >
                 منتشر شده
               </option>
             </select>

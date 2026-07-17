@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import {
   flexRender,
@@ -9,13 +9,17 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { columns } from "../../../data/users";
+import getColumns from "./UsersColumns";
 import TableHeader from "../../../components/Common/Table/components/TableHeader";
 import UsersPagination from "./usersPagination";
 
-const UsersTable = ({ users, loading }) => {
+const UsersTable = ({ users, loading, deleteHandler, editHandler }) => {
   const [sorting, setSorting] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
+  const columns = useMemo(
+    () => getColumns(deleteHandler, editHandler),
+    [deleteHandler, editHandler],
+  );
   const globalFilterFn = (row, columnId, value) => {
     const search = value.toLowerCase();
     return Object.values(row.original).join(" ").toLowerCase().includes(search);

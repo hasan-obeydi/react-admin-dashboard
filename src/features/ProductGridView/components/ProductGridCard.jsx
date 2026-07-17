@@ -5,7 +5,7 @@ import { AiOutlineShopping } from "react-icons/ai";
 
 import { DEFAULT_PRODUCTS_IMAGE } from "../../../data/products";
 import RemoveItem from "../../../components/Common/EditItem/RemoveItem";
-import EditItemDetails from "../../../components/Common/EditItem/EditItemDetails";
+import EditProductDetails from "../../../components/Common/EditItem/EditProductDetails";
 import Modal from "../../../components/Common/Modal/Modal";
 
 const ProductGridCard = ({
@@ -95,7 +95,7 @@ const ProductGridCard = ({
               item={product}
               itemType="محصول"
             />
-            <EditItemDetails
+            <EditProductDetails
               editHandler={editHandler}
               item={product}
               itemType="محصول"

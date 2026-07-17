@@ -18,7 +18,7 @@ import {
   getProducts,
 } from "../../api/products";
 import productReducer from "../../reducers/productReducer";
-import { clearInputs } from "../../utils/products";
+import { clearInputs } from "../../utils/clearInputs";
 
 const Products = () => {
   useTitle("صفحه محصولات");
@@ -146,9 +146,9 @@ const Products = () => {
         .then((response) => {
           if (response.ok) {
             getProducts().then((datas) => {
-              setProducts((prev) => [...prev, datas.slice(-1)[0]]);
+              setProducts(datas);
             });
-            clearInputs(dispatch);
+            clearInputs(dispatch, "محصول");
           }
         });
     }

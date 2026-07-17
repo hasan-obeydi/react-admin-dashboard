@@ -20,8 +20,12 @@ const RemoveItem = ({ item, deleteHandler, itemType }) => {
       <div className="flex-center">
         <p>
           آیا از حذف {itemType}{" "}
-          <span className="text-red-500 font-bold">{item.title}</span> اطمینان
-          دارید؟
+          <span className="text-red-500 font-bold">
+            {itemType === "محصول"
+              ? item.title
+              : `${item.firstname} ${item.lastname}`}
+          </span>{" "}
+          اطمینان دارید؟
         </p>
       </div>
     </Modal>

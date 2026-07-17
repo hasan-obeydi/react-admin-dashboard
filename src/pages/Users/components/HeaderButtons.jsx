@@ -38,7 +38,7 @@ const HeaderButtons = ({
         dispatch={dispatch}
         modalTitle={"ایجاد کاربر"}
         Trigger={Trigger}
-        newUser={newUser}
+        newItem={newUser}
       >
         <AddUser newUser={newUser} dispatch={dispatch} />
       </Modal>

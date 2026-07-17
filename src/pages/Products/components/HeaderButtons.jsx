@@ -34,11 +34,12 @@ const HeaderButtons = ({
         )}
       </div>
       <Modal
+        itemType="محصول"
         onSubmit={addProductHandler}
         dispatch={dispatch}
         modalTitle={"ایجاد محصول"}
         Trigger={Trigger}
-        newProduct={newProduct}
+        newItem={newProduct}
       >
         <AddProduct newProduct={newProduct} dispatch={dispatch} />
       </Modal>

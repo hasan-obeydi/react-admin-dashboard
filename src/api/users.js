@@ -43,6 +43,7 @@ export async function addUser(newUser) {
       body: JSON.stringify({
         firstname: newUser.firstname,
         lastname: newUser.lastname,
+        username: newUser.username,
         email: newUser.email,
         age: Number(newUser.age),
         city: newUser.city,

@@ -9,7 +9,7 @@ import {
   DEFAULT_PRODUCTS_IMAGE,
 } from "../../data/products";
 import clsx from "clsx";
-import EditItemDetails from "../../components/Common/EditItem/EditItemDetails";
+import EditProductDetails from "../../components/Common/EditItem/EditProductDetails";
 import ChangeVisibilityItem from "../../components/Common/EditItem/ChangeVisibilityItem";
 import RemoveItem from "../../components/Common/EditItem/RemoveItem";
 
@@ -78,7 +78,7 @@ const ProductTableView = ({
                     itemType="محصول"
                     changeVisbilityHandler={changeVisbilityHandler}
                   />
-                  <EditItemDetails
+                  <EditProductDetails
                     editHandler={editHandler}
                     item={product}
                     itemType="محصول"

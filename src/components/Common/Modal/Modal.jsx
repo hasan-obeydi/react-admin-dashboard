@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 
 import useToggle from "../../../hooks/useToggle";
 import ModalFooter from "./components/ModalFooter";
-import { clearInputs } from "../../../utils/products";
+import { clearInputs } from "../../../utils/clearInputs";
 
 const Modal = (props) => {
   const [isModalOpen, toggle] = useToggle(false);
@@ -29,7 +29,7 @@ const Modal = (props) => {
                 className="icon-hover"
                 onClick={() => {
                   toggle();
-                  props.dispatch && clearInputs(props.dispatch);
+                  props.dispatch && clearInputs(props.dispatch, props.itemType);
                 }}
               >
                 <IoClose className="text-2xl" />

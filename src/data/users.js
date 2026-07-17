@@ -1,33 +1,19 @@
-export const columns = [
-  {
-    id: "row",
-    header: "ردیف",
-    cell: ({ row }) => row.index + 1,
-    enableSorting: false,
-  },
-  {
-    id: "fullname",
-    header: "نام و نام خانوادگی",
-    accessorFn: (row) => `${row.firstname} ${row.lastname}`,
-  },
-  {
-    id: "3",
-    accessorKey: "username",
-    header: "نام کاربری",
-  },
-  {
-    id: "4",
-    accessorKey: "email",
-    header: "ایمیل",
-  },
-  {
-    id: "5",
-    accessorKey: "age",
-    header: "سن",
-  },
-  {
-    id: "6",
-    accessorKey: "city",
-    header: "شهر",
-  },
+import {
+  FIRSTNAME,
+  LASTNAME,
+  USERNAME,
+  EMAIL,
+  AGE,
+  CITY,
+} from "../actions/user";
+
+const userFields = [
+  { label: "نام", key: FIRSTNAME, inputType: "text" },
+  { label: "نام خانوادگی", key: LASTNAME, inputType: "text" },
+  { label: "نام کاربری", key: USERNAME, inputType: "text" },
+  { label: "ایمیل", key: EMAIL, inputType: "text" },
+  { label: "سن کاربر", key: AGE, inputType: "number" },
+  { label: "شهر", key: CITY, inputType: "text" },
 ];
+
+export default userFields;

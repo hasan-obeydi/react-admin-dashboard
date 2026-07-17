@@ -2,16 +2,17 @@ import { FaEdit } from "react-icons/fa";
 
 import Modal from "../Modal/Modal";
 import { useReducer } from "react";
-import productReducer from "../../../reducers/productReducer";
-import AddProduct from "../AddItem/AddProduct";
+import userReducer from "../../../reducers/userReducer";
+import AddUser from "../AddItem/AddUser";
 
-const EditItemDetails = ({ item, editHandler, itemType }) => {
-  const [newProduct, dispatch] = useReducer(productReducer, {
-    title: item.title,
-    isPublished: item.isPublished,
-    entity: item.entity,
-    price: item.price,
-    description: item.description,
+const EditUserDetails = ({ item, editHandler, itemType }) => {
+  const [newUser, dispatch] = useReducer(userReducer, {
+    firstname: item.firstname,
+    lastname: item.lastname,
+    username: item.username,
+    email: item.email,
+    age: item.age,
+    city: item.city,
   });
   const Trigger = () => {
     return (
@@ -22,15 +23,16 @@ const EditItemDetails = ({ item, editHandler, itemType }) => {
   };
   return (
     <Modal
+      itemType={itemType}
       onSubmit={editHandler}
-      newProduct={newProduct}
+      newItem={newUser}
       item={item}
       modalTitle={`ویرایش ${itemType}`}
       Trigger={Trigger}
     >
-      <AddProduct newProduct={newProduct} dispatch={dispatch} />
+      <AddUser newUser={newUser} dispatch={dispatch} />
     </Modal>
   );
 };
 
-export default EditItemDetails;
+export default EditUserDetails;
