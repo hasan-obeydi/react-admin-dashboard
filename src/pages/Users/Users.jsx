@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 import SectionTitle from "../../components/Common/SectionTitle";
 import useResize from "../../hooks/useResize";
@@ -11,6 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { addUser, deleteUser, EditUser, getUsers } from "../../api/users";
 import userReducer from "../../reducers/userReducer";
 import { clearInputs } from "../../utils/clearInputs";
+import UserGridView from "../../features/UserGridView/UserGridView";
 
 const Users = () => {
   useTitle("صفحه کاربران");
@@ -28,6 +29,7 @@ const Users = () => {
     age: "",
     city: "",
   });
+  const [paginatedUsers, setPaginatedUsers] = useState([]);
   const [usersLayoutType, setUsersLayoutType] = useLocalStorage(
     "usersLayout",
     "TABLE",
@@ -146,12 +148,24 @@ const Users = () => {
           />
         }
       />
-      <UsersTable
-        deleteHandler={deleteHandler}
-        editHandler={editHandler}
-        users={[...users].reverse()}
-        loading={usersLoading}
-      />
+
+      {usersLayoutType === "TABLE" ? (
+        <UsersTable
+          deleteHandler={deleteHandler}
+          editHandler={editHandler}
+          users={[...users].reverse()}
+          loading={usersLoading}
+        />
+      ) : (
+        <UserGridView
+          users={users}
+          paginatedUsers={paginatedUsers}
+          setPaginatedUsers={setPaginatedUsers}
+          loading={usersLoading}
+          deleteHandler={deleteHandler}
+          editHandler={editHandler}
+        />
+      )}
     </section>
   );
 };
