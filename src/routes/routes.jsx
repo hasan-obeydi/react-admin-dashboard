@@ -4,12 +4,17 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 import Home from "../pages/Home/Home";
 import Products from "../pages/Products/Products";
 import Users from "../pages/Users/Users";
-import LoginPage from "../pages/Auth/Login";
+import AuthLauout from "../components/layout/AuthLauout";
+import PrivateRoute from "../components/PrivateRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
@@ -27,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <AuthLauout />,
   },
 ]);
 

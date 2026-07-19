@@ -23,73 +23,79 @@ const ProductTableView = ({
   editHandler,
 }) => {
   return (
-    <Table
-      header={{ title: "لیست محصولات" }}
-      loading={loading}
-      pagination={{
-        items: products,
-        setPaginatedItems: setPaginatedProducts,
-        itemsPerPage: 10,
-      }}
-    >
-      <TableHead>
-        {productsTableHeadRow.map((cell) => (
-          <TableHeadCell key={cell}>{cell}</TableHeadCell>
-        ))}
-      </TableHead>
-      {loading ? (
-        <p className="p-3">در حال اتصال...</p>
-      ) : (
-        <TableBody>
-          {paginatedProducts.map((product, index) => (
-            <TableRow key={product._id}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{product.title}</TableCell>
-              <TableCell>
-                <img
-                  src={product.image || DEFAULT_PRODUCTS_IMAGE}
-                  alt={product.title}
-                  className="w-18 h-12 object-cover rounded"
-                />
-              </TableCell>
-              <TableCell>
-                <span
-                  className={clsx(
-                    product.isPublished ? "succes-badge" : "danger-badge",
-                    "badge",
-                  )}
-                >
-                  {product.isPublished ? "عمومی" : "خصوصی"}
-                </span>
-              </TableCell>
-              <TableCell>{product.entity}</TableCell>
-              <TableCell>
-                {product.price?.toLocaleString("fa-IR")} <span>تومان</span>
-              </TableCell>
-              <TableCell>
-                <div className="flex items-center">
-                  <RemoveItem
-                    item={product}
-                    deleteHandler={deleteHandler}
-                    itemType="محصول"
-                  />
-                  <ChangeVisibilityItem
-                    item={product}
-                    itemType="محصول"
-                    changeVisbilityHandler={changeVisbilityHandler}
-                  />
-                  <EditProductDetails
-                    editHandler={editHandler}
-                    item={product}
-                    itemType="محصول"
-                  />
-                </div>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      )}
-    </Table>
+    <>
+      <Table
+        header={{ title: "لیست محصولات" }}
+        loading={loading}
+        pagination={{
+          items: products,
+          setPaginatedItems: setPaginatedProducts,
+          itemsPerPage: 10,
+        }}
+      >
+        {loading ? (
+          <p className="px-3 border-t pt-3 mt-2 border-color dark:border-gray-700">
+            در حال اتصال...
+          </p>
+        ) : (
+          <>
+            <TableHead>
+              {productsTableHeadRow.map((cell) => (
+                <TableHeadCell key={cell}>{cell}</TableHeadCell>
+              ))}
+            </TableHead>
+            <TableBody>
+              {paginatedProducts.map((product, index) => (
+                <TableRow key={product._id}>
+                  <TableCell>{index + 1}</TableCell>
+                  <TableCell>{product.title}</TableCell>
+                  <TableCell>
+                    <img
+                      src={product.image || DEFAULT_PRODUCTS_IMAGE}
+                      alt={product.title}
+                      className="w-18 h-12 object-cover rounded"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <span
+                      className={clsx(
+                        product.isPublished ? "succes-badge" : "danger-badge",
+                        "badge",
+                      )}
+                    >
+                      {product.isPublished ? "عمومی" : "خصوصی"}
+                    </span>
+                  </TableCell>
+                  <TableCell>{product.entity}</TableCell>
+                  <TableCell>
+                    {product.price?.toLocaleString("fa-IR")} <span>تومان</span>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center">
+                      <RemoveItem
+                        item={product}
+                        deleteHandler={deleteHandler}
+                        itemType="محصول"
+                      />
+                      <ChangeVisibilityItem
+                        item={product}
+                        itemType="محصول"
+                        changeVisbilityHandler={changeVisbilityHandler}
+                      />
+                      <EditProductDetails
+                        editHandler={editHandler}
+                        item={product}
+                        itemType="محصول"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </>
+        )}
+      </Table>
+    </>
   );
 };
 
