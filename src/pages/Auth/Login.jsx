@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import useTitle from "../../hooks/useTitle";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router";
 import LoginForm from "./components/LoginForm";
 
@@ -32,7 +32,7 @@ const LoginPage = () => {
         ? (toast.success("ورود با موفقیت انجام شد."),
           setTimeout(() => {
             navigate("/");
-            localStorage.setItem("token", "fake-jwt-token");
+            localStorage.setItem("token", JSON.stringify("fake-jwt-token"));
           }, 500),
           setUsername(""),
           setPassword(""))
@@ -41,13 +41,16 @@ const LoginPage = () => {
   };
 
   return (
-    <LoginForm
-      handleSubmit={handleSubmit}
-      username={username}
-      password={password}
-      setUsername={setUsername}
-      setPassword={setPassword}
-    />
+    <div className="dark:bg-dark-body h-screen overflow-x-hidden bg-body flex-center">
+      <LoginForm
+        handleSubmit={handleSubmit}
+        username={username}
+        password={password}
+        setUsername={setUsername}
+        setPassword={setPassword}
+      />
+      <Toaster toastOptions={{ duration: 500 }} />
+    </div>
   );
 };
 

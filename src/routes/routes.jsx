@@ -6,6 +6,7 @@ import Products from "../pages/Products/Products";
 import Users from "../pages/Users/Users";
 import AuthLauout from "../components/layout/AuthLauout";
 import PrivateRoute from "../components/PrivateRoute";
+import NotFound from "../pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <AuthLauout />,
+  },
+  {
+    path: "/*",
+    element: <NotFound />,
   },
 ]);
 
