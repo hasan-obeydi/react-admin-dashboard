@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useMemo, useReducer, useState } from "react";
 
 import SectionTitle from "../../components/Common/SectionTitle";
 import useResize from "../../hooks/useResize";
@@ -29,17 +29,24 @@ const Users = () => {
     age: "",
     city: "",
   });
-  const [paginatedUsers, setPaginatedUsers] = useState([]);
+  const [usersPerPage, setUsersPerPage] = useLocalStorage("usersPerPage", 10);
   const [usersLayoutType, setUsersLayoutType] = useLocalStorage(
     "usersLayout",
     "TABLE",
   );
+  const [currentPage, setCurrentPage] = useState(1);
   const windowSize = useResize();
   useEffect(() => {
     if (windowSize.width <= 640) {
       setUsersLayoutType("GRID");
     }
   }, [windowSize, setUsersLayoutType]);
+  const paginationUsers = useMemo(() => {
+    const startIndex = (currentPage - 1) * usersPerPage;
+    const endIndex = startIndex + usersPerPage;
+
+    return [...users].reverse().slice(startIndex, endIndex);
+  }, [currentPage, usersPerPage, users]);
   const submitValidation = (item, newUser, toggle) => {
     if (
       newUser &&
@@ -158,10 +165,13 @@ const Users = () => {
         />
       ) : (
         <UserGridView
-          users={users}
-          paginatedUsers={paginatedUsers}
-          setPaginatedUsers={setPaginatedUsers}
+          paginationUsers={paginationUsers}
           loading={usersLoading}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          usersPerPage={usersPerPage}
+          setUsersPerPage={setUsersPerPage}
+          usersCount={users.length}
           deleteHandler={deleteHandler}
           editHandler={editHandler}
         />

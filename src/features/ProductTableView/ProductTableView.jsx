@@ -14,24 +14,32 @@ import ChangeVisibilityItem from "../../components/Common/EditItem/ChangeVisibil
 import RemoveItem from "../../components/Common/EditItem/RemoveItem";
 
 const ProductTableView = ({
-  products,
-  paginatedProducts,
-  setPaginatedProducts,
-  changeVisbilityHandler,
+  searchInput,
+  setSearchInput,
+  paginationProducts,
   loading,
+  setCurrentPage,
+  currentPage,
+  productsPerPage,
+  setProductsPerPage,
+  itemCount,
+  changeVisbilityHandler,
   deleteHandler,
   editHandler,
 }) => {
   return (
     <>
       <Table
-        header={{ title: "لیست محصولات" }}
-        loading={loading}
-        pagination={{
-          items: products,
-          setPaginatedItems: setPaginatedProducts,
-          itemsPerPage: 10,
+        header={{
+          title: "لیست محصولات",
+          item: searchInput,
+          setItem: setSearchInput,
         }}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        itemsPerPage={productsPerPage}
+        setItemsPerPage={setProductsPerPage}
+        itemCount={itemCount}
       >
         {loading ? (
           <p className="px-3 border-t pt-3 mt-2 border-color dark:border-gray-700">
@@ -45,7 +53,7 @@ const ProductTableView = ({
               ))}
             </TableHead>
             <TableBody>
-              {paginatedProducts.map((product, index) => (
+              {paginationProducts.map((product, index) => (
                 <TableRow key={product._id}>
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{product.title}</TableCell>

@@ -8,6 +8,10 @@ const UsersPagination = ({ table }) => {
         value={table.getState().pagination.pageSize}
         onChange={(e) => {
           table.setPageSize(Number(e.target.value));
+          localStorage.setItem(
+            "usersPerPage",
+            JSON.stringify(Number(e.target.value)),
+          );
         }}
       >
         <option className="dark:text-white dark:bg-dark-primary" value={5}>
@@ -18,6 +22,12 @@ const UsersPagination = ({ table }) => {
         </option>
         <option className="dark:text-white dark:bg-dark-primary" value={20}>
           20
+        </option>
+        <option className="dark:text-white dark:bg-dark-primary" value={50}>
+          50
+        </option>
+        <option className="dark:text-white dark:bg-dark-primary" value={100}>
+          100
         </option>
       </select>
       <button

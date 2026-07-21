@@ -19,14 +19,15 @@ import {
 } from "../../api/products";
 import productReducer from "../../reducers/productReducer";
 import { clearInputs } from "../../utils/clearInputs";
+import usePagination from "../../hooks/usePagination";
 
 const Products = () => {
   useTitle("صفحه محصولات");
-  const [paginatedProducts, setPaginatedProducts] = useState([]);
   const [productsLayoutType, setProductsLayoutType] = useLocalStorage(
     "productsLayout",
     "TABLE",
   );
+  const [productsPerPage, setProductsPerPage] = useLocalStorage('productsPerPage', 10);
   const windowSize = useResize();
   useEffect(() => {
     if (windowSize.width <= 640) {
@@ -45,6 +46,14 @@ const Products = () => {
     entity: "",
     price: "",
     description: "",
+  });
+  const [searchInput, setSearchInput] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginationProducts = usePagination({
+    items: products,
+    searchInput,
+    currentPage,
+    itemsPerPage: productsPerPage,
   });
   const submitValidation = (item, newProduct, toggle) => {
     if (
@@ -172,9 +181,14 @@ const Products = () => {
       />
       {productsLayoutType === "TABLE" ? (
         <ProductTableView
-          products={products}
-          paginatedProducts={paginatedProducts}
-          setPaginatedProducts={setPaginatedProducts}
+          seachInput={searchInput}
+          setSearchInput={setSearchInput}
+          paginationProducts={paginationProducts}
+          currentPage={currentPage}
+          productsPerPage={productsPerPage}
+          setProductsPerPage={setProductsPerPage}
+          itemCount={products.length}
+          setCurrentPage={setCurrentPage}
           loading={productsLoading}
           deleteHandler={deleteHandler}
           changeVisbilityHandler={changeVisbilityHandler}
@@ -183,9 +197,13 @@ const Products = () => {
       ) : (
         <ProductGridView
           products={products}
-          paginatedProducts={paginatedProducts}
-          setPaginatedProducts={setPaginatedProducts}
+          paginationProducts={paginationProducts}
           loading={productsLoading}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          productsPerPage={productsPerPage}
+          setProductsPerPage={setProductsPerPage}
+          productsCount={products.length}
           deleteHandler={deleteHandler}
           changeVisbilityHandler={changeVisbilityHandler}
           editHandler={editHandler}

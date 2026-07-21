@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   flexRender,
@@ -11,7 +11,7 @@ import {
 
 import getColumns from "./UsersColumns";
 import TableHeader from "../../../components/Common/Table/components/TableHeader";
-import UsersPagination from "./usersPagination";
+import UsersPagination from "./UsersPagination";
 
 const UsersTable = ({ users, loading, deleteHandler, editHandler }) => {
   const [sorting, setSorting] = useState([]);
@@ -20,8 +20,10 @@ const UsersTable = ({ users, loading, deleteHandler, editHandler }) => {
     () => getColumns(deleteHandler, editHandler),
     [deleteHandler, editHandler],
   );
+
   const globalFilterFn = (row, columnId, value) => {
     const search = value.toLowerCase();
+
     return Object.values(row.original).join(" ").toLowerCase().includes(search);
   };
   const table = useReactTable({
@@ -39,14 +41,17 @@ const UsersTable = ({ users, loading, deleteHandler, editHandler }) => {
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
+  useEffect(() => {
+    table.setPageSize(JSON.parse(localStorage.getItem("usersPerPage")));
+  }, [table]);
   return (
     <div className="w-full bg-white dark:bg-dark-primary rounded-lg shadow-md py-4 mt-8 border border-color dark:border-gray-700">
       <TableHeader
         header={{
           title: "لیست کاربران",
           buttons: undefined,
-          value: globalFilter,
-          setFilter: setGlobalFilter,
+          item: globalFilter,
+          setItem: setGlobalFilter,
         }}
       />
       {loading ? (

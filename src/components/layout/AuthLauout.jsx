@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import LoginPage from "../../pages/Auth/Login";
 
 const AuthLauout = () => {
-  const theme = localStorage.getItem("theme");
+  const theme = JSON.parse(localStorage.getItem("theme"));
   useEffect(() => {
     document.documentElement.setAttribute("class", theme);
   }, [theme]);

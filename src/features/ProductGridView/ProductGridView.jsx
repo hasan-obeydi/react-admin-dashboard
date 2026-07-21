@@ -2,21 +2,26 @@ import Pagination from "../../components/Common/Pagination/Pagination";
 import ProducGridCard from "./components/ProductGridCard";
 
 const ProductGridView = ({
-  products,
-  paginatedProducts,
-  setPaginatedProducts,
+  paginationProducts,
   loading,
   deleteHandler,
+  currentPage,
+  setCurrentPage,
+  productsPerPage,
+  setProductsPerPage,
+  productsCount,
   changeVisbilityHandler,
   editHandler,
 }) => {
   return (
     <div>
       {loading ? (
-        <p className="pt-4 px-3 border-t mt-6 border-color dark:border-gray-700">در حال اتصال...</p>
+        <p className="pt-4 px-3 border-t mt-6 border-color dark:border-gray-700">
+          در حال اتصال...
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-8 gap-4 sm:gap-3">
-          {paginatedProducts.map((product) => (
+          {paginationProducts.map((product) => (
             <ProducGridCard
               deleteHandler={deleteHandler}
               changeVisbilityHandler={changeVisbilityHandler}
@@ -27,11 +32,12 @@ const ProductGridView = ({
           ))}
         </div>
       )}
-
       <Pagination
-        items={products}
-        setPaginatedItems={setPaginatedProducts}
-        itemsPerPage={12}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        itemsPerPage={productsPerPage}
+        setItemsPerPage={setProductsPerPage}
+        itemCount={productsCount}
       />
     </div>
   );

@@ -12,7 +12,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const token = localStorage.getItem("token");
+  const token = JSON.parse(localStorage.getItem("token"));
 
   useEffect(() => {
     if (token) {

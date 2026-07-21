@@ -42,7 +42,7 @@
   position: absolute;
 }
 .pagination {
-  @apply mt-6 pt-4 dark:border-gray-700 flex items-center justify-center gap-1 border-t border-color;
+  @apply mt-2 pt-4 dark:border-gray-700 flex items-center justify-center gap-1 border-t border-color;
 }
 .pagination-button {
   @apply cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 py-2 rounded-lg px-3 text-sm font-semibold transition duration-200 border border-color dark:border-gray-700;

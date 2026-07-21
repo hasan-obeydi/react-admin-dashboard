@@ -1,17 +1,14 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
 
-const Pagination = ({ items, setPaginatedItems, itemsPerPage }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const pagesCount = Math.ceil(items.length / itemsPerPage);
+const Pagination = ({
+  currentPage,
+  setCurrentPage,
+  itemCount,
+  itemsPerPage,
+  setItemsPerPage,
+}) => {
+  const pagesCount = Math.ceil(itemCount / itemsPerPage);
   const changePage = (pageNumber) => setCurrentPage(pageNumber);
-
-  useEffect(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const paginatedItems = [...items].reverse().slice(startIndex, endIndex);
-    setPaginatedItems(paginatedItems);
-  }, [items, setPaginatedItems, currentPage, itemsPerPage]);
 
   const renderPageNumber = () => {
     const pageNumbers = [];
@@ -32,25 +29,53 @@ const Pagination = ({ items, setPaginatedItems, itemsPerPage }) => {
   };
   return (
     <div className="pagination">
-      <button
-        disabled={currentPage === 1}
-        className={clsx("pagination-button", {
-          "pages-ended": currentPage === 1,
-        })}
-        onClick={() => changePage(currentPage - 1)}
-      >
-        قبلی
-      </button>
-      {renderPageNumber()}
-      <button
-        disabled={currentPage === pagesCount}
-        className={clsx("pagination-button", {
-          "pages-ended": currentPage === pagesCount,
-        })}
-        onClick={() => changePage(currentPage + 1)}
-      >
-        بعدی
-      </button>
+      <div>
+        <select
+          value={itemsPerPage}
+          className="input-style ml-5"
+          onChange={(e) => {
+            setItemsPerPage(Number(e.target.value));
+            setCurrentPage(1);
+          }}
+        >
+          <option className="dark:text-white dark:bg-dark-primary" value={5}>
+            5
+          </option>
+          <option className="dark:text-white dark:bg-dark-primary" value={10}>
+            10
+          </option>
+          <option className="dark:text-white dark:bg-dark-primary" value={20}>
+            20
+          </option>
+          <option className="dark:text-white dark:bg-dark-primary" value={50}>
+            50
+          </option>
+          <option className="dark:text-white dark:bg-dark-primary" value={100}>
+            100
+          </option>
+        </select>
+      </div>
+      <div className="flex items-center gap-1">
+        <button
+          disabled={currentPage === 1}
+          className={clsx("pagination-button", {
+            "pages-ended": currentPage === 1,
+          })}
+          onClick={() => changePage(currentPage - 1)}
+        >
+          قبلی
+        </button>
+        {renderPageNumber()}
+        <button
+          disabled={currentPage === pagesCount}
+          className={clsx("pagination-button", {
+            "pages-ended": currentPage === pagesCount,
+          })}
+          onClick={() => changePage(currentPage + 1)}
+        >
+          بعدی
+        </button>
+      </div>
     </div>
   );
 };

@@ -2,10 +2,13 @@ import Pagination from "../../components/Common/Pagination/Pagination";
 import UserGridCard from "./components/UserGridCard";
 
 const UserGridView = ({
-  users,
-  paginatedUsers,
-  setPaginatedUsers,
+  paginationUsers,
   loading,
+  currentPage,
+  setCurrentPage,
+  usersPerPage,
+  setUsersPerPage,
+  usersCount,
   deleteHandler,
   editHandler,
 }) => {
@@ -17,7 +20,7 @@ const UserGridView = ({
         </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 mt-8 gap-4 sm:gap-3">
-          {paginatedUsers.map((user) => (
+          {paginationUsers.map((user) => (
             <UserGridCard
               deleteHandler={deleteHandler}
               editHandler={editHandler}
@@ -29,9 +32,11 @@ const UserGridView = ({
       )}
 
       <Pagination
-        items={users}
-        setPaginatedItems={setPaginatedUsers}
-        itemsPerPage={6}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        itemsPerPage={usersPerPage}
+        setItemsPerPage={setUsersPerPage}
+        itemCount={usersCount}
       />
     </div>
   );
