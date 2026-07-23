@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useReducer, useState } from "react";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import SectionTitle from "../../components/Common/SectionTitle";
 import useResize from "../../hooks/useResize";
 import useTitle from "../../hooks/useTitle";
@@ -7,7 +9,6 @@ import useFetch from "../../hooks/useFetch";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import HeaderButtons from "./components/HeaderButtons";
 import UsersTable from "./components/UsersTable";
-import toast, { Toaster } from "react-hot-toast";
 import { addUser, deleteUser, EditUser, getUsers } from "../../api/users";
 import userReducer from "../../reducers/userReducer";
 import { clearInputs } from "../../utils/clearInputs";

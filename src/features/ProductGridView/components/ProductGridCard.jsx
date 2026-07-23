@@ -48,7 +48,7 @@ const ProductGridCard = ({
         </div>
         <div className="mt-3">
           <h4>{product.title}</h4>
-          <p className="text-sm text-gray-500 mt-2 min-h-10">
+          <p className="text-sm text-gray-500 mt-2 line-clamp-2 min-h-10">
             {product.description}
           </p>
         </div>
