@@ -1,0 +1,167 @@
+{
+  "info": {
+    "_postman_id": "cfcb891b-5e61-4f1a-beb4-ca565661c332",
+    "name": "ReactJs-Cms",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://react-js-cms.iran.liara.run/api/users",
+              "protocol": "https",
+              "host": ["react-js-cms", "iran", "liara", "run"],
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstname\": \"{{$randomFirstName}}\",\n    \"lastname\": \"{{$randomLastName}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"age\": {{$randomInt}},\n    \"city\": \"{{$randomCity}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://react-js-cms.iran.liara.run/api/users",
+              "protocol": "https",
+              "host": ["react-js-cms", "iran", "liara", "run"],
+              "path": ["api", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstname\": \"{{$randomFirstName}}\",\n    \"lastname\": \"{{$randomLastName}}\",\n    \"username\": \"{{$randomUserName}}\",\n    \"email\": \"{{$randomEmail}}\",\n    \"age\": {{$randomInt}},\n    \"city\": \"{{$randomCity}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://react-js-cms.iran.liara.run/api/users/{id}",
+              "protocol": "https",
+              "host": ["react-js-cms", "iran", "liara", "run"],
+              "path": ["api", "users", "{id}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://react-js-cms.iran.liara.run/api/users/{id}",
+              "protocol": "https",
+              "host": ["react-js-cms", "iran", "liara", "run"],
+              "path": ["api", "users", "{id}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "products",
+      "item": [
+        {
+          "name": "All",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://react-js-cms.iran.liara.run/api/products",
+              "protocol": "https",
+              "host": ["react-js-cms", "iran", "liara", "run"],
+              "path": ["api", "products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"{{$randomProductName}}\",\n    \"price\": {{$randomPrice}},\n    \"isPublished\": {{$randomBoolean}},\n    \"description\": \"{{$randomLoremText}}\",\n    \"entity\": {{$randomInt}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://react-js-cms.iran.liara.run/api/products",
+              "protocol": "https",
+              "host": ["react-js-cms", "iran", "liara", "run"],
+              "path": ["api", "products"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"{{$randomProductName}}\",\n    \"price\": {{$randomPrice}},\n    \"isPublished\": {{$randomBoolean}},\n    \"description\": \"{{$randomLoremText}}\",\n    \"entity\": {{$randomInt}}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://react-js-cms.iran.liara.run/api/products/{id}",
+              "protocol": "https",
+              "host": ["react-js-cms", "iran", "liara", "run"],
+              "path": ["api", "products", "{id}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remove",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://react-js-cms.iran.liara.run/api/products/{id}",
+              "protocol": "https",
+              "host": ["react-js-cms", "iran", "liara", "run"],
+              "path": ["api", "products", "{id}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
